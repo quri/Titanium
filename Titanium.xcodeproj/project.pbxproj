@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		88F00B951937F9C000DCA103 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B941937F9C000DCA103 /* Foundation.framework */; };
+		88F00B971937F9C000DCA103 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B961937F9C000DCA103 /* CoreGraphics.framework */; };
+		88F00B991937F9C000DCA103 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B981937F9C000DCA103 /* UIKit.framework */; };
+		88F00B9F1937F9C000DCA103 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88F00B9D1937F9C000DCA103 /* InfoPlist.strings */; };
+		88F00BA11937F9C000DCA103 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BA01937F9C000DCA103 /* main.m */; };
+		88F00BA51937F9C000DCA103 /* ESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BA41937F9C000DCA103 /* ESAppDelegate.m */; };
+		88F00BA81937F9C000DCA103 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F00BA61937F9C000DCA103 /* Main_iPhone.storyboard */; };
+		88F00BAB1937F9C000DCA103 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F00BA91937F9C000DCA103 /* Main_iPad.storyboard */; };
+		88F00BAE1937F9C000DCA103 /* ESViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BAD1937F9C000DCA103 /* ESViewController.m */; };
+		88F00BB01937F9C000DCA103 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88F00BAF1937F9C000DCA103 /* Images.xcassets */; };
+		88F00BB71937F9C000DCA103 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00BB61937F9C000DCA103 /* XCTest.framework */; };
+		88F00BB81937F9C000DCA103 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B941937F9C000DCA103 /* Foundation.framework */; };
+		88F00BB91937F9C000DCA103 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B981937F9C000DCA103 /* UIKit.framework */; };
+		88F00BC11937F9C000DCA103 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88F00BBF1937F9C000DCA103 /* InfoPlist.strings */; };
+		88F00BC31937F9C000DCA103 /* TitaniumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BC21937F9C000DCA103 /* TitaniumTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		88F00BBA1937F9C000DCA103 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88F00B891937F9C000DCA103 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88F00B901937F9C000DCA103;
+			remoteInfo = Titanium;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		88F00B911937F9C000DCA103 /* Titanium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Titanium.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88F00B941937F9C000DCA103 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		88F00B961937F9C000DCA103 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		88F00B981937F9C000DCA103 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		88F00B9C1937F9C000DCA103 /* Titanium-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Titanium-Info.plist"; sourceTree = "<group>"; };
+		88F00B9E1937F9C000DCA103 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		88F00BA01937F9C000DCA103 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		88F00BA21937F9C000DCA103 /* Titanium-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Titanium-Prefix.pch"; sourceTree = "<group>"; };
+		88F00BA31937F9C000DCA103 /* ESAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESAppDelegate.h; sourceTree = "<group>"; };
+		88F00BA41937F9C000DCA103 /* ESAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESAppDelegate.m; sourceTree = "<group>"; };
+		88F00BA71937F9C000DCA103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		88F00BAA1937F9C000DCA103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		88F00BAC1937F9C000DCA103 /* ESViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESViewController.h; sourceTree = "<group>"; };
+		88F00BAD1937F9C000DCA103 /* ESViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESViewController.m; sourceTree = "<group>"; };
+		88F00BAF1937F9C000DCA103 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		88F00BB51937F9C000DCA103 /* TitaniumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TitaniumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88F00BB61937F9C000DCA103 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		88F00BBE1937F9C000DCA103 /* TitaniumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TitaniumTests-Info.plist"; sourceTree = "<group>"; };
+		88F00BC01937F9C000DCA103 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		88F00BC21937F9C000DCA103 /* TitaniumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitaniumTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88F00B8E1937F9C000DCA103 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F00B971937F9C000DCA103 /* CoreGraphics.framework in Frameworks */,
+				88F00B991937F9C000DCA103 /* UIKit.framework in Frameworks */,
+				88F00B951937F9C000DCA103 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F00BB21937F9C000DCA103 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F00BB71937F9C000DCA103 /* XCTest.framework in Frameworks */,
+				88F00BB91937F9C000DCA103 /* UIKit.framework in Frameworks */,
+				88F00BB81937F9C000DCA103 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		88F00B881937F9C000DCA103 = {
+			isa = PBXGroup;
+			children = (
+				88F00B9A1937F9C000DCA103 /* Titanium */,
+				88F00BBC1937F9C000DCA103 /* TitaniumTests */,
+				88F00B931937F9C000DCA103 /* Frameworks */,
+				88F00B921937F9C000DCA103 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88F00B921937F9C000DCA103 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88F00B911937F9C000DCA103 /* Titanium.app */,
+				88F00BB51937F9C000DCA103 /* TitaniumTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88F00B931937F9C000DCA103 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88F00B941937F9C000DCA103 /* Foundation.framework */,
+				88F00B961937F9C000DCA103 /* CoreGraphics.framework */,
+				88F00B981937F9C000DCA103 /* UIKit.framework */,
+				88F00BB61937F9C000DCA103 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88F00B9A1937F9C000DCA103 /* Titanium */ = {
+			isa = PBXGroup;
+			children = (
+				88F00BA31937F9C000DCA103 /* ESAppDelegate.h */,
+				88F00BA41937F9C000DCA103 /* ESAppDelegate.m */,
+				88F00BA61937F9C000DCA103 /* Main_iPhone.storyboard */,
+				88F00BA91937F9C000DCA103 /* Main_iPad.storyboard */,
+				88F00BAC1937F9C000DCA103 /* ESViewController.h */,
+				88F00BAD1937F9C000DCA103 /* ESViewController.m */,
+				88F00BAF1937F9C000DCA103 /* Images.xcassets */,
+				88F00B9B1937F9C000DCA103 /* Supporting Files */,
+			);
+			path = Titanium;
+			sourceTree = "<group>";
+		};
+		88F00B9B1937F9C000DCA103 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88F00B9C1937F9C000DCA103 /* Titanium-Info.plist */,
+				88F00B9D1937F9C000DCA103 /* InfoPlist.strings */,
+				88F00BA01937F9C000DCA103 /* main.m */,
+				88F00BA21937F9C000DCA103 /* Titanium-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88F00BBC1937F9C000DCA103 /* TitaniumTests */ = {
+			isa = PBXGroup;
+			children = (
+				88F00BC21937F9C000DCA103 /* TitaniumTests.m */,
+				88F00BBD1937F9C000DCA103 /* Supporting Files */,
+			);
+			path = TitaniumTests;
+			sourceTree = "<group>";
+		};
+		88F00BBD1937F9C000DCA103 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88F00BBE1937F9C000DCA103 /* TitaniumTests-Info.plist */,
+				88F00BBF1937F9C000DCA103 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88F00B901937F9C000DCA103 /* Titanium */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88F00BC61937F9C000DCA103 /* Build configuration list for PBXNativeTarget "Titanium" */;
+			buildPhases = (
+				88F00B8D1937F9C000DCA103 /* Sources */,
+				88F00B8E1937F9C000DCA103 /* Frameworks */,
+				88F00B8F1937F9C000DCA103 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Titanium;
+			productName = Titanium;
+			productReference = 88F00B911937F9C000DCA103 /* Titanium.app */;
+			productType = "com.apple.product-type.application";
+		};
+		88F00BB41937F9C000DCA103 /* TitaniumTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88F00BC91937F9C000DCA103 /* Build configuration list for PBXNativeTarget "TitaniumTests" */;
+			buildPhases = (
+				88F00BB11937F9C000DCA103 /* Sources */,
+				88F00BB21937F9C000DCA103 /* Frameworks */,
+				88F00BB31937F9C000DCA103 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88F00BBB1937F9C000DCA103 /* PBXTargetDependency */,
+			);
+			name = TitaniumTests;
+			productName = TitaniumTests;
+			productReference = 88F00BB51937F9C000DCA103 /* TitaniumTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88F00B891937F9C000DCA103 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ES;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Quri;
+				TargetAttributes = {
+					88F00BB41937F9C000DCA103 = {
+						TestTargetID = 88F00B901937F9C000DCA103;
+					};
+				};
+			};
+			buildConfigurationList = 88F00B8C1937F9C000DCA103 /* Build configuration list for PBXProject "Titanium" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 88F00B881937F9C000DCA103;
+			productRefGroup = 88F00B921937F9C000DCA103 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88F00B901937F9C000DCA103 /* Titanium */,
+				88F00BB41937F9C000DCA103 /* TitaniumTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88F00B8F1937F9C000DCA103 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F00BAB1937F9C000DCA103 /* Main_iPad.storyboard in Resources */,
+				88F00BB01937F9C000DCA103 /* Images.xcassets in Resources */,
+				88F00BA81937F9C000DCA103 /* Main_iPhone.storyboard in Resources */,
+				88F00B9F1937F9C000DCA103 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F00BB31937F9C000DCA103 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F00BC11937F9C000DCA103 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88F00B8D1937F9C000DCA103 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F00BAE1937F9C000DCA103 /* ESViewController.m in Sources */,
+				88F00BA51937F9C000DCA103 /* ESAppDelegate.m in Sources */,
+				88F00BA11937F9C000DCA103 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F00BB11937F9C000DCA103 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F00BC31937F9C000DCA103 /* TitaniumTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88F00BBB1937F9C000DCA103 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88F00B901937F9C000DCA103 /* Titanium */;
+			targetProxy = 88F00BBA1937F9C000DCA103 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		88F00B9D1937F9C000DCA103 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88F00B9E1937F9C000DCA103 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		88F00BA61937F9C000DCA103 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88F00BA71937F9C000DCA103 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		88F00BA91937F9C000DCA103 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88F00BAA1937F9C000DCA103 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		88F00BBF1937F9C000DCA103 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88F00BC01937F9C000DCA103 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		88F00BC41937F9C000DCA103 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88F00BC51937F9C000DCA103 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88F00BC71937F9C000DCA103 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
+				INFOPLIST_FILE = "Titanium/Titanium-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		88F00BC81937F9C000DCA103 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
+				INFOPLIST_FILE = "Titanium/Titanium-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		88F00BCA1937F9C000DCA103 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Titanium.app/Titanium";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TitaniumTests/TitaniumTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		88F00BCB1937F9C000DCA103 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Titanium.app/Titanium";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
+				INFOPLIST_FILE = "TitaniumTests/TitaniumTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88F00B8C1937F9C000DCA103 /* Build configuration list for PBXProject "Titanium" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F00BC41937F9C000DCA103 /* Debug */,
+				88F00BC51937F9C000DCA103 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88F00BC61937F9C000DCA103 /* Build configuration list for PBXNativeTarget "Titanium" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F00BC71937F9C000DCA103 /* Debug */,
+				88F00BC81937F9C000DCA103 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		88F00BC91937F9C000DCA103 /* Build configuration list for PBXNativeTarget "TitaniumTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F00BCA1937F9C000DCA103 /* Debug */,
+				88F00BCB1937F9C000DCA103 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88F00B891937F9C000DCA103 /* Project object */;
+}
