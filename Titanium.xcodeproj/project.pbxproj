@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88B8AD97194901C8008E6DE2 /* C4S front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88B8AD96194901C8008E6DE2 /* C4S front.jpg */; };
+		88B8AD99194901D5008E6DE2 /* C2S top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88B8AD98194901D5008E6DE2 /* C2S top.jpg */; };
 		88F00B951937F9C000DCA103 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B941937F9C000DCA103 /* Foundation.framework */; };
 		88F00B971937F9C000DCA103 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B961937F9C000DCA103 /* CoreGraphics.framework */; };
 		88F00B991937F9C000DCA103 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B981937F9C000DCA103 /* UIKit.framework */; };
@@ -14,14 +16,16 @@
 		88F00BA11937F9C000DCA103 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BA01937F9C000DCA103 /* main.m */; };
 		88F00BA51937F9C000DCA103 /* ESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BA41937F9C000DCA103 /* ESAppDelegate.m */; };
 		88F00BA81937F9C000DCA103 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F00BA61937F9C000DCA103 /* Main_iPhone.storyboard */; };
-		88F00BAB1937F9C000DCA103 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F00BA91937F9C000DCA103 /* Main_iPad.storyboard */; };
-		88F00BAE1937F9C000DCA103 /* ESViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BAD1937F9C000DCA103 /* ESViewController.m */; };
 		88F00BB01937F9C000DCA103 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88F00BAF1937F9C000DCA103 /* Images.xcassets */; };
 		88F00BB71937F9C000DCA103 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00BB61937F9C000DCA103 /* XCTest.framework */; };
 		88F00BB81937F9C000DCA103 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B941937F9C000DCA103 /* Foundation.framework */; };
 		88F00BB91937F9C000DCA103 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B981937F9C000DCA103 /* UIKit.framework */; };
 		88F00BC11937F9C000DCA103 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88F00BBF1937F9C000DCA103 /* InfoPlist.strings */; };
 		88F00BC31937F9C000DCA103 /* TitaniumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BC21937F9C000DCA103 /* TitaniumTests.m */; };
+		88F00BCE1937FA5C00DCA103 /* ESTitaniumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BCD1937FA5C00DCA103 /* ESTitaniumViewController.m */; };
+		88F00BD01937FABA00DCA103 /* frenchman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88F00BCF1937FABA00DCA103 /* frenchman.jpg */; };
+		88F00BD31938047A00DCA103 /* ESModalImageViewAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BD21938047A00DCA103 /* ESModalImageViewAnimationController.m */; };
+		88F00BD6193805A000DCA103 /* ESImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F00BD5193805A000DCA103 /* ESImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		88B8AD96194901C8008E6DE2 /* C4S front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "C4S front.jpg"; sourceTree = "<group>"; };
+		88B8AD98194901D5008E6DE2 /* C2S top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "C2S top.jpg"; sourceTree = "<group>"; };
 		88F00B911937F9C000DCA103 /* Titanium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Titanium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F00B941937F9C000DCA103 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		88F00B961937F9C000DCA103 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -46,15 +52,19 @@
 		88F00BA31937F9C000DCA103 /* ESAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESAppDelegate.h; sourceTree = "<group>"; };
 		88F00BA41937F9C000DCA103 /* ESAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESAppDelegate.m; sourceTree = "<group>"; };
 		88F00BA71937F9C000DCA103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		88F00BAA1937F9C000DCA103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		88F00BAC1937F9C000DCA103 /* ESViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESViewController.h; sourceTree = "<group>"; };
-		88F00BAD1937F9C000DCA103 /* ESViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESViewController.m; sourceTree = "<group>"; };
 		88F00BAF1937F9C000DCA103 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88F00BB51937F9C000DCA103 /* TitaniumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TitaniumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F00BB61937F9C000DCA103 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		88F00BBE1937F9C000DCA103 /* TitaniumTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TitaniumTests-Info.plist"; sourceTree = "<group>"; };
 		88F00BC01937F9C000DCA103 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		88F00BC21937F9C000DCA103 /* TitaniumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitaniumTests.m; sourceTree = "<group>"; };
+		88F00BCC1937FA5C00DCA103 /* ESTitaniumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTitaniumViewController.h; sourceTree = "<group>"; };
+		88F00BCD1937FA5C00DCA103 /* ESTitaniumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTitaniumViewController.m; sourceTree = "<group>"; };
+		88F00BCF1937FABA00DCA103 /* frenchman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frenchman.jpg; sourceTree = "<group>"; };
+		88F00BD11938047A00DCA103 /* ESModalImageViewAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESModalImageViewAnimationController.h; sourceTree = "<group>"; };
+		88F00BD21938047A00DCA103 /* ESModalImageViewAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESModalImageViewAnimationController.m; sourceTree = "<group>"; };
+		88F00BD4193805A000DCA103 /* ESImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESImageViewController.h; sourceTree = "<group>"; };
+		88F00BD5193805A000DCA103 /* ESImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,9 +127,12 @@
 				88F00BA31937F9C000DCA103 /* ESAppDelegate.h */,
 				88F00BA41937F9C000DCA103 /* ESAppDelegate.m */,
 				88F00BA61937F9C000DCA103 /* Main_iPhone.storyboard */,
-				88F00BA91937F9C000DCA103 /* Main_iPad.storyboard */,
-				88F00BAC1937F9C000DCA103 /* ESViewController.h */,
-				88F00BAD1937F9C000DCA103 /* ESViewController.m */,
+				88F00BCC1937FA5C00DCA103 /* ESTitaniumViewController.h */,
+				88F00BCD1937FA5C00DCA103 /* ESTitaniumViewController.m */,
+				88F00BD11938047A00DCA103 /* ESModalImageViewAnimationController.h */,
+				88F00BD21938047A00DCA103 /* ESModalImageViewAnimationController.m */,
+				88F00BD4193805A000DCA103 /* ESImageViewController.h */,
+				88F00BD5193805A000DCA103 /* ESImageViewController.m */,
 				88F00BAF1937F9C000DCA103 /* Images.xcassets */,
 				88F00B9B1937F9C000DCA103 /* Supporting Files */,
 			);
@@ -129,6 +142,9 @@
 		88F00B9B1937F9C000DCA103 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				88F00BCF1937FABA00DCA103 /* frenchman.jpg */,
+				88B8AD96194901C8008E6DE2 /* C4S front.jpg */,
+				88B8AD98194901D5008E6DE2 /* C2S top.jpg */,
 				88F00B9C1937F9C000DCA103 /* Titanium-Info.plist */,
 				88F00B9D1937F9C000DCA103 /* InfoPlist.strings */,
 				88F00BA01937F9C000DCA103 /* main.m */,
@@ -232,10 +248,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88F00BAB1937F9C000DCA103 /* Main_iPad.storyboard in Resources */,
 				88F00BB01937F9C000DCA103 /* Images.xcassets in Resources */,
+				88B8AD99194901D5008E6DE2 /* C2S top.jpg in Resources */,
 				88F00BA81937F9C000DCA103 /* Main_iPhone.storyboard in Resources */,
+				88F00BD01937FABA00DCA103 /* frenchman.jpg in Resources */,
 				88F00B9F1937F9C000DCA103 /* InfoPlist.strings in Resources */,
+				88B8AD97194901C8008E6DE2 /* C4S front.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,9 +272,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88F00BAE1937F9C000DCA103 /* ESViewController.m in Sources */,
+				88F00BD6193805A000DCA103 /* ESImageViewController.m in Sources */,
 				88F00BA51937F9C000DCA103 /* ESAppDelegate.m in Sources */,
 				88F00BA11937F9C000DCA103 /* main.m in Sources */,
+				88F00BCE1937FA5C00DCA103 /* ESTitaniumViewController.m in Sources */,
+				88F00BD31938047A00DCA103 /* ESModalImageViewAnimationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,14 +313,6 @@
 				88F00BA71937F9C000DCA103 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		88F00BA91937F9C000DCA103 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				88F00BAA1937F9C000DCA103 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		88F00BBF1937F9C000DCA103 /* InfoPlist.strings */ = {
@@ -395,6 +407,7 @@
 				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
 				INFOPLIST_FILE = "Titanium/Titanium-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -408,6 +421,7 @@
 				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
 				INFOPLIST_FILE = "Titanium/Titanium-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -471,6 +485,7 @@
 				88F00BC81937F9C000DCA103 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88F00BC91937F9C000DCA103 /* Build configuration list for PBXNativeTarget "TitaniumTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +494,7 @@
 				88F00BCB1937F9C000DCA103 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

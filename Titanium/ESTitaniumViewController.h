@@ -1,5 +1,5 @@
 //
-//  ESViewController.h
+//  ESTitaniumViewController.h
 //  Titanium
 //
 //  Created by Camille Kander on 5/29/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ESViewController : UIViewController
+@interface ESTitaniumViewController : UIViewController
 
 @end
