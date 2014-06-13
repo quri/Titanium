@@ -14,12 +14,19 @@ typedef NS_ENUM(BOOL, ESModalTransitionDirection) {
     ESModalTransitionDirectionDismissing = NO
 };
 
+BOOL frameIsPortrait(CGRect frame) {
+    return frame.size.height > frame.size.width;
+}
+
+static CGFloat const kTransitioningDuration = 0.6;
+static CGFloat const kMaskingDuration = 0.2;
+
 @implementation ESModalImageViewAnimationController
 
 #pragma mark - View controller animated transitioning
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.6;
+    return kTransitioningDuration;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -42,20 +49,26 @@ typedef NS_ENUM(BOOL, ESModalTransitionDirection) {
     UIView *presentedView = presentedViewController.view;
     UIView *originView = [transitionContext containerView];
     
+    [presentedView setAlpha:0.0];
     [originView insertSubview:presentedView aboveSubview:originView];
     
-    [self.thumbnailView setHidden:YES];
+    UIImage *image = presentedViewController.image;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:[presentedViewController imageViewFrameForImage:presentedViewController.image]];
+    [imageView setImage:image];
     
-    CALayer *mask = [self maskWithModalViewFrame:presentedView.frame direction:ESModalTransitionDirectionPresenting animated:YES];
-    [presentedView.layer setMask:mask];
+    CALayer *mask = [self maskWithImageViewFrame:imageView.frame direction:ESModalTransitionDirectionPresenting animated:YES];
+    [imageView.layer setMask:mask];
+    [imageView setTransform:[self affineTransformWithImageViewFrame:imageView.frame andThumbnailFrame:self.thumbnailView.frame]];
 
-    CGAffineTransform transform = [self affineTransformWithImageViewFrame:presentedView.frame andThumbnailFrame:self.thumbnailView.frame];
-    [presentedView setTransform:transform];
+    [self.thumbnailView setHidden:YES];
+    [originView insertSubview:imageView aboveSubview:presentedView];
     
     CGFloat duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.0 options:0 animations:^{
-        [presentedView setTransform:CGAffineTransformIdentity];
+        [imageView setTransform:CGAffineTransformIdentity];
+        [presentedView setAlpha:1.0];
     } completion:^(BOOL finished) {
+        [presentedViewController setImageView:imageView];
         [transitionContext completeTransition:YES];
     }];
 }
@@ -63,13 +76,22 @@ typedef NS_ENUM(BOOL, ESModalTransitionDirection) {
 - (void)performDismiss:(id<UIViewControllerContextTransitioning>)transitionContext {
     
     ESImageViewController *imageViewController = (ESImageViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIView *containerView = [transitionContext containerView];
     UIView *fromView = imageViewController.view;
-    CALayer *mask = [self maskWithModalViewFrame:fromView.frame direction:ESModalTransitionDirectionDismissing animated:YES];
-    [fromView.layer setMask:mask];
+    
+    UIImageView *imageView = imageViewController.imageView;
+    [imageView removeFromSuperview];
+    [containerView addSubview:imageView];
     
     CGFloat duration = [self transitionDuration:transitionContext];
+    
+    CGRect freezeFrame = imageView.frame; // This is necessary if you want to delay the masking using dispatch_after
+    CALayer *mask = [self maskWithImageViewFrame:freezeFrame direction:ESModalTransitionDirectionDismissing animated:YES];
+    [imageView.layer setMask:mask];
+    
     [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
-        [imageViewController.view setTransform:[self affineTransformWithImageViewFrame:imageViewController.view.frame andThumbnailFrame:self.thumbnailView.frame]];
+        [imageView setTransform:[self affineTransformWithImageViewFrame:imageView.frame andThumbnailFrame:self.thumbnailView.frame]];
+        [fromView setAlpha:0.0];
     } completion:^(BOOL finished) {
         [self.thumbnailView setHidden:NO];
         [transitionContext completeTransition:YES];
@@ -80,7 +102,13 @@ typedef NS_ENUM(BOOL, ESModalTransitionDirection) {
 
 - (CGAffineTransform)affineTransformWithImageViewFrame:(CGRect)imageViewFrame andThumbnailFrame:(CGRect)thumbnailFrame {
     
-    CGFloat scaleFactor = thumbnailFrame.size.width / imageViewFrame.size.width;
+    CGFloat scaleFactor = 0.0;
+    if (frameIsPortrait(imageViewFrame)) {
+        scaleFactor = thumbnailFrame.size.width / imageViewFrame.size.width;
+    } else {
+        scaleFactor = thumbnailFrame.size.height / imageViewFrame.size.height;
+    }
+    
     CGAffineTransform scale = CGAffineTransformMakeScale(scaleFactor, scaleFactor);
     
     CGFloat deltaX = CGRectGetMidX(thumbnailFrame) - CGRectGetMidX(imageViewFrame);
@@ -90,30 +118,38 @@ typedef NS_ENUM(BOOL, ESModalTransitionDirection) {
     return CGAffineTransformConcat(scale, translation);
 }
 
-- (CALayer *)maskWithModalViewFrame:(CGRect)modalViewFrame direction:(ESModalTransitionDirection)direction animated:(BOOL)animated {
-    
-    CGRect maskBounds = CGRectMake(0.0, 0.0, 320.0, 320.0);
+- (CALayer *)maskWithImageViewFrame:(CGRect)imageViewFrame direction:(ESModalTransitionDirection)direction animated:(BOOL)animated {
     
     CALayer *mask = [CALayer layer];
-    mask.position = CGPointMake(CGRectGetMidX(modalViewFrame), CGRectGetMidY(modalViewFrame));
+    mask.position = CGPointMake(CGRectGetMidX(imageViewFrame), CGRectGetMidY(imageViewFrame));
     mask.backgroundColor = [UIColor blackColor].CGColor;
     
+    UIView *rotatedView = [[UIView alloc] initWithFrame:imageViewFrame];
+    [rotatedView setTransform:CGAffineTransformMakeRotation(M_PI_2)];
+    CGRect maskBounds = CGRectIntersection(imageViewFrame, rotatedView.frame);
+
     if (animated) {
-        mask.bounds = (direction == ESModalTransitionDirectionPresenting ? maskBounds : modalViewFrame);
-        [self addAnimationToMask:mask forModalViewFrame:modalViewFrame transitionDirection:direction];
+        mask.bounds = (direction == ESModalTransitionDirectionPresenting ? maskBounds : imageViewFrame);
+        [self addAnimationToMask:mask forImageViewFrame:imageViewFrame transitionDirection:direction];
     }
     
-    mask.bounds = (direction == ESModalTransitionDirectionPresenting ? modalViewFrame : maskBounds);
+    mask.bounds = (direction == ESModalTransitionDirectionPresenting ? imageViewFrame : maskBounds);
     
     return mask;
 }
 
-- (void)addAnimationToMask:(CALayer *)mask forModalViewFrame:(CGRect)frame transitionDirection:(ESModalTransitionDirection)direction {
+- (void)addAnimationToMask:(CALayer *)mask forImageViewFrame:(CGRect)frame transitionDirection:(ESModalTransitionDirection)direction {
     
-    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"bounds.size.height"];
-    anim.fromValue = @((direction == ESModalTransitionDirectionPresenting ? 320.0 : frame.size.height));
-    anim.toValue = @((direction == ESModalTransitionDirectionPresenting ? frame.size.height : 320.0));
-    anim.duration = 0.2;
+    BOOL portrait = frameIsPortrait(frame);
+    NSString *keyPath = (portrait ? @"bounds.size.height" : @"bounds.size.width");
+    CGFloat longDim = (portrait ? frame.size.height : frame.size.width);
+    CGFloat shortDim = (portrait ? frame.size.width : frame.size.height);
+    
+    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:keyPath];
+    anim.fromValue = @((direction == ESModalTransitionDirectionPresenting ? shortDim : longDim));
+    anim.toValue = @((direction == ESModalTransitionDirectionPresenting ? longDim : shortDim));
+    anim.duration = kMaskingDuration;
+    
     [mask addAnimation:anim forKey:@"bounds"];
 }
 

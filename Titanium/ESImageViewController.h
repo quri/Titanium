@@ -11,5 +11,8 @@
 @interface ESImageViewController : UIViewController
 
 @property (nonatomic, strong) UIImage *image;
+@property (strong, nonatomic) UIImageView *imageView;
+
+- (CGRect)imageViewFrameForImage:(UIImage *)image;
 
 @end

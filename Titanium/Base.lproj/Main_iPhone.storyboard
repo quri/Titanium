@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -16,23 +16,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yn8-kV-6W1">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yn8-kV-6W1">
                                 <rect key="frame" x="41" y="37" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="TF6-D6-bKp"/>
+                                    <constraint firstAttribute="height" constant="100" id="feV-7j-Qij"/>
+                                </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHD-AK-1SW">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iHD-AK-1SW">
                                 <rect key="frame" x="41" y="177" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="2VA-sB-sDe"/>
+                                    <constraint firstAttribute="height" constant="100" id="9F8-Kg-GJP"/>
+                                </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75X-63-Nkz">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75X-63-Nkz">
                                 <rect key="frame" x="184" y="37" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="irb-Nv-WkR"/>
+                                    <constraint firstAttribute="width" constant="100" id="lck-Mg-iFx"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="17" id="EHL-PC-REw"/>
+                            <constraint firstItem="75X-63-Nkz" firstAttribute="leading" secondItem="Yn8-kV-6W1" secondAttribute="trailing" constant="43" id="UNC-oY-yHh"/>
+                            <constraint firstItem="iHD-AK-1SW" firstAttribute="leading" secondItem="Yn8-kV-6W1" secondAttribute="leading" id="ck6-Zu-vFl"/>
+                            <constraint firstItem="iHD-AK-1SW" firstAttribute="top" secondItem="Yn8-kV-6W1" secondAttribute="bottom" constant="40" id="doV-t4-7Rm"/>
+                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="41" id="kX3-Cb-rgl"/>
+                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="top" secondItem="75X-63-Nkz" secondAttribute="top" id="pzl-7b-zJj"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="Yn8-kV-6W1" id="Cv2-pc-Mqb"/>
@@ -58,28 +78,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3hC-Cu-seh">
-                                <rect key="frame" x="-20" y="-20" width="360" height="608"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hC-Cu-seh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6FM-Zm-kKK">
-                                        <rect key="frame" x="20" y="20" width="320" height="568"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="wgd-xS-pFg" appends="YES" id="eUp-Qf-xba"/>
-                                        </connections>
-                                    </imageView>
-                                </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="Nlt-yF-1m1" id="kuB-F4-7W6"/>
+                                    <outletCollection property="gestureRecognizers" destination="wgd-xS-pFg" appends="YES" id="boL-il-a7H"/>
                                 </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3hC-Cu-seh" firstAttribute="leading" secondItem="epl-Uu-0ad" secondAttribute="leading" id="Eif-zi-oBG"/>
+                            <constraint firstItem="3hC-Cu-seh" firstAttribute="top" secondItem="epl-Uu-0ad" secondAttribute="top" id="PNM-Pd-cdp"/>
+                            <constraint firstItem="djm-QQ-tX3" firstAttribute="top" secondItem="3hC-Cu-seh" secondAttribute="bottom" id="Rey-DX-I8C"/>
+                            <constraint firstAttribute="trailing" secondItem="3hC-Cu-seh" secondAttribute="trailing" id="epc-v7-r5y"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="6FM-Zm-kKK" id="AmB-Lh-oRf"/>
                         <outlet property="scrollView" destination="3hC-Cu-seh" id="iPU-qQ-Hln"/>
                     </connections>
                 </viewController>

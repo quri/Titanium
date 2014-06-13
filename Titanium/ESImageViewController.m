@@ -11,7 +11,6 @@
 @interface ESImageViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -30,11 +29,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.scrollView.backgroundColor = [UIColor clearColor];
-    [self.scrollView setOpaque:NO];
-    self.scrollView.minimumZoomScale = 0.5;
-    self.scrollView.maximumZoomScale = 6.0;
-    self.scrollView.contentSize = CGSizeMake(1280, 960);
+    
+    self.scrollView.backgroundColor = [UIColor blackColor];
+    self.scrollView.minimumZoomScale = 1.0;
     self.scrollView.delegate = self;
 }
 
@@ -47,15 +44,53 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    [self.imageView setImage:self.image];
-    [self.imageView setBackgroundColor:[UIColor clearColor]];
-    [self.imageView setOpaque:NO];
+}
+
+- (void)setImageView:(UIImageView *)imageView {
+    
+    [imageView removeFromSuperview];
+    _imageView = imageView;
+    
+    [_imageView setContentMode:UIViewContentModeScaleAspectFit];
+    
+    [self.scrollView setMaximumZoomScale:[self maximumZoomScaleForImageSize:imageView.image.size]];
+    [self.scrollView setContentSize:self.image.size];
+    [self.scrollView addSubview:_imageView];
 }
 
 #pragma mark - Scroll view delegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return self.imageView;
+}
+
+#pragma mark - Math
+
+- (CGFloat)maximumZoomScaleForImageSize:(CGSize)imageSize {
+
+    CGFloat horizontalRatio = imageSize.width / self.view.frame.size.width;
+    CGFloat verticalRatio = imageSize.height / self.view.frame.size.height;
+    
+    return MAX(horizontalRatio, verticalRatio) / 2.0;
+}
+
+- (CGRect)imageViewFrameForImage:(UIImage *)image {
+    
+    CGFloat const screenRatio = self.view.frame.size.width / self.view.frame.size.height;
+    CGFloat const imageRatio = image.size.width / image.size.height;
+    
+    CGFloat width = 0.0;
+    CGFloat height = 0.0;
+    
+    if (imageRatio > screenRatio) {
+        width = self.view.frame.size.width;
+        height = width / imageRatio;
+    } else {
+        height = self.view.frame.size.height;
+        width = height * imageRatio;
+    }
+    
+    return CGRectMake(0.0, 0.0, width, height);
 }
 
 @end
