@@ -54,8 +54,9 @@
     [_imageView setContentMode:UIViewContentModeScaleAspectFit];
     
     [self.scrollView setMaximumZoomScale:[self maximumZoomScaleForImageSize:imageView.image.size]];
-    [self.scrollView setContentSize:self.image.size];
+    [self.scrollView setContentMode:UIViewContentModeCenter];
     [self.scrollView addSubview:_imageView];
+//    [imageView setCenter:self.scrollView.center];
 }
 
 #pragma mark - Scroll view delegate
@@ -76,21 +77,28 @@
 
 - (CGRect)imageViewFrameForImage:(UIImage *)image {
     
-    CGFloat const screenRatio = self.view.frame.size.width / self.view.frame.size.height;
+    CGSize const screenSize = self.view.frame.size;
+    CGFloat const screenRatio = screenSize.width / screenSize.height;
     CGFloat const imageRatio = image.size.width / image.size.height;
     
+    CGFloat x = 0.0;
+    CGFloat y = 0.0;
     CGFloat width = 0.0;
     CGFloat height = 0.0;
     
-    if (imageRatio > screenRatio) {
-        width = self.view.frame.size.width;
+    if (imageRatio > screenRatio) { // Top-bottom letterboxing
+        width = screenSize.width;
         height = width / imageRatio;
-    } else {
-        height = self.view.frame.size.height;
+        y = (screenSize.height - height) / 2.0;
+    } else {                        // Left-right letterboxing
+        height = screenSize.height;
         width = height * imageRatio;
+        x = (screenSize.width - width) / 2.0;
     }
     
-    return CGRectMake(0.0, 0.0, width, height);
+    NSLog(@"{ %f, %f, %f, %f }", x, y, width, height);
+    
+    return CGRectMake(x, y, width, height);
 }
 
 @end

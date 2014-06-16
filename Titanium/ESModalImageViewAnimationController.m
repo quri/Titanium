@@ -14,8 +14,8 @@ typedef NS_ENUM(BOOL, ESModalTransitionDirection) {
     ESModalTransitionDirectionDismissing = NO
 };
 
-BOOL frameIsPortrait(CGRect frame) {
-    return frame.size.height > frame.size.width;
+BOOL frameIsPortrait(CGRect bounds) {
+    return bounds.size.height > bounds.size.width;
 }
 
 static CGFloat const kTransitioningDuration = 0.6;
@@ -120,30 +120,32 @@ static CGFloat const kMaskingDuration = 0.2;
 
 - (CALayer *)maskWithImageViewFrame:(CGRect)imageViewFrame direction:(ESModalTransitionDirection)direction animated:(BOOL)animated {
     
+    CGRect imageViewBounds = CGRectOffset(imageViewFrame, -imageViewFrame.origin.x, -imageViewFrame.origin.y);
+    
     CALayer *mask = [CALayer layer];
-    mask.position = CGPointMake(CGRectGetMidX(imageViewFrame), CGRectGetMidY(imageViewFrame));
+    mask.position = CGPointMake(CGRectGetMidX(imageViewBounds), CGRectGetMidY(imageViewBounds));
     mask.backgroundColor = [UIColor blackColor].CGColor;
     
-    UIView *rotatedView = [[UIView alloc] initWithFrame:imageViewFrame];
+    UIView *rotatedView = [[UIView alloc] initWithFrame:imageViewBounds];
     [rotatedView setTransform:CGAffineTransformMakeRotation(M_PI_2)];
-    CGRect maskBounds = CGRectIntersection(imageViewFrame, rotatedView.frame);
+    CGRect maskBounds = CGRectIntersection(imageViewBounds, rotatedView.frame);
 
     if (animated) {
-        mask.bounds = (direction == ESModalTransitionDirectionPresenting ? maskBounds : imageViewFrame);
-        [self addAnimationToMask:mask forImageViewFrame:imageViewFrame transitionDirection:direction];
+        mask.bounds = (direction == ESModalTransitionDirectionPresenting ? maskBounds : imageViewBounds);
+        [self addAnimationToMask:mask forImageViewBounds:imageViewBounds transitionDirection:direction];
     }
     
-    mask.bounds = (direction == ESModalTransitionDirectionPresenting ? imageViewFrame : maskBounds);
+    mask.bounds = (direction == ESModalTransitionDirectionPresenting ? imageViewBounds : maskBounds);
     
     return mask;
 }
 
-- (void)addAnimationToMask:(CALayer *)mask forImageViewFrame:(CGRect)frame transitionDirection:(ESModalTransitionDirection)direction {
+- (void)addAnimationToMask:(CALayer *)mask forImageViewBounds:(CGRect)bounds transitionDirection:(ESModalTransitionDirection)direction {
     
-    BOOL portrait = frameIsPortrait(frame);
+    BOOL portrait = frameIsPortrait(bounds);
     NSString *keyPath = (portrait ? @"bounds.size.height" : @"bounds.size.width");
-    CGFloat longDim = (portrait ? frame.size.height : frame.size.width);
-    CGFloat shortDim = (portrait ? frame.size.width : frame.size.height);
+    CGFloat longDim = (portrait ? bounds.size.height : bounds.size.width);
+    CGFloat shortDim = (portrait ? bounds.size.width : bounds.size.height);
     
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:keyPath];
     anim.fromValue = @((direction == ESModalTransitionDirectionPresenting ? shortDim : longDim));
