@@ -14,6 +14,8 @@
 
 @end
 
+UIStatusBarAnimation const kStatusBarAnimation = UIStatusBarAnimationSlide;
+
 @implementation ESImageViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,6 +46,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)setImageView:(UIImageView *)imageView {
@@ -54,15 +57,49 @@
     [_imageView setContentMode:UIViewContentModeScaleAspectFit];
     
     [self.scrollView setMaximumZoomScale:[self maximumZoomScaleForImageSize:imageView.image.size]];
-    [self.scrollView setContentMode:UIViewContentModeCenter];
     [self.scrollView addSubview:_imageView];
-//    [imageView setCenter:self.scrollView.center];
+    
+    NSLog(@"Scrollview %@", NSStringFromCGRect(self.scrollView.bounds));
+    NSLog(@"Imageview %@", NSStringFromCGRect(_imageView.frame));
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (IBAction)handleTap:(id)sender {
+    
+    if (self.scrollView.zoomScale > 1.0) {
+        [self zoomOut];
+    } else {
+        [self dismissSelf];
+    }
+}
+
+- (void)zoomOut {
+    
+    [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:1.0 options:0 animations:^{
+        [self.scrollView setZoomScale:1.0];
+    } completion:nil];
+}
+
+- (void)dismissSelf {
+    
+    [self performSegueWithIdentifier:@"HideImage" sender:nil];
 }
 
 #pragma mark - Scroll view delegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return self.imageView;
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
+    
+    NSLog(@"Zoom x%.2f, { %g, %g, %g, %g } in { %g, %g, %g, %g }",
+          scale,
+          view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height,
+          scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height);
 }
 
 #pragma mark - Math
@@ -96,9 +133,10 @@
         x = (screenSize.width - width) / 2.0;
     }
     
-    NSLog(@"{ %f, %f, %f, %f }", x, y, width, height);
+//    NSLog(@"{ %f, %f, %f, %f }", x, y, width, height);
     
     return CGRectMake(x, y, width, height);
+    return CGRectMake(0.0, 0.0, width, height);
 }
 
 @end

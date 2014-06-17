@@ -97,13 +97,14 @@
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="3hC-Cu-seh" id="iPU-qQ-Hln"/>
+                        <segue destination="VkF-Eh-SL7" kind="unwind" identifier="HideImage" unwindAction="hideImage:" id="t9p-x6-QtU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ke4-31-wpU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="VkF-Eh-SL7" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="wgd-xS-pFg">
                     <connections>
-                        <segue destination="VkF-Eh-SL7" kind="unwind" unwindAction="hideImage:" id="nfu-a6-hRI"/>
+                        <action selector="handleTap:" destination="Nlt-yF-1m1" id="ELK-uj-zDJ"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

@@ -18,7 +18,7 @@ BOOL frameIsPortrait(CGRect bounds) {
     return bounds.size.height > bounds.size.width;
 }
 
-static CGFloat const kTransitioningDuration = 0.6;
+static CGFloat const kTransitioningDuration = 0.5;
 static CGFloat const kMaskingDuration = 0.2;
 
 @implementation ESModalImageViewAnimationController
@@ -64,7 +64,7 @@ static CGFloat const kMaskingDuration = 0.2;
     [originView insertSubview:imageView aboveSubview:presentedView];
     
     CGFloat duration = [self transitionDuration:transitionContext];
-    [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.0 options:0 animations:^{
+    [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
         [imageView setTransform:CGAffineTransformIdentity];
         [presentedView setAlpha:1.0];
     } completion:^(BOOL finished) {
@@ -89,7 +89,7 @@ static CGFloat const kMaskingDuration = 0.2;
     CALayer *mask = [self maskWithImageViewFrame:freezeFrame direction:ESModalTransitionDirectionDismissing animated:YES];
     [imageView.layer setMask:mask];
     
-    [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
+    [UIView animateWithDuration:duration*0.6 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:1.0 options:0 animations:^{
         [imageView setTransform:[self affineTransformWithImageViewFrame:imageView.frame andThumbnailFrame:self.thumbnailView.frame]];
         [fromView setAlpha:0.0];
     } completion:^(BOOL finished) {
