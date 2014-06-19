@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchGestureRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *doubleTapGestureRecognizer;
 
 @end
 
@@ -35,6 +36,8 @@
     self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
     self.pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    self.doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    [self.doubleTapGestureRecognizer setNumberOfTapsRequired:2];
     
     for (UIGestureRecognizer *recognizer in @[self.tapGestureRecognizer, self.pinchGestureRecognizer, self.panGestureRecognizer]) {
         [recognizer setDelegate:self];
@@ -65,6 +68,7 @@
     
     [_imageView addGestureRecognizer:self.pinchGestureRecognizer];
     [_imageView addGestureRecognizer:self.panGestureRecognizer];
+    [_imageView addGestureRecognizer:self.doubleTapGestureRecognizer];
     
     [self.view addSubview:_imageView];
 }
@@ -161,8 +165,26 @@
     }
 }
 
+- (void)doubleTap:(UITapGestureRecognizer *)recognizer {
+    
+    UIView *content = self.imageView;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [content setTransform:CGAffineTransformScale(content.transform, 3.0, 3.0)];
+    }];
+}
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    
+    if (gestureRecognizer == self.tapGestureRecognizer && otherGestureRecognizer == self.doubleTapGestureRecognizer) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark - Math

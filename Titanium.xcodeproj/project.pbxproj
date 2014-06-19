@@ -41,6 +41,7 @@
 /* Begin PBXFileReference section */
 		88B8AD96194901C8008E6DE2 /* C4S front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "C4S front.jpg"; sourceTree = "<group>"; };
 		88B8AD98194901D5008E6DE2 /* C2S top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "C2S top.jpg"; sourceTree = "<group>"; };
+		88C0558A1953A4470009A643 /* Titanium.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Titanium.podspec; sourceTree = SOURCE_ROOT; };
 		88F00B911937F9C000DCA103 /* Titanium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Titanium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F00B941937F9C000DCA103 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		88F00B961937F9C000DCA103 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -149,6 +150,7 @@
 				88F00B9D1937F9C000DCA103 /* InfoPlist.strings */,
 				88F00BA01937F9C000DCA103 /* main.m */,
 				88F00BA21937F9C000DCA103 /* Titanium-Prefix.pch */,
+				88C0558A1953A4470009A643 /* Titanium.podspec */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
