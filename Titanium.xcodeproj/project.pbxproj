@@ -62,10 +62,10 @@
 		88F00BCC1937FA5C00DCA103 /* ESTitaniumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTitaniumViewController.h; sourceTree = "<group>"; };
 		88F00BCD1937FA5C00DCA103 /* ESTitaniumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTitaniumViewController.m; sourceTree = "<group>"; };
 		88F00BCF1937FABA00DCA103 /* frenchman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frenchman.jpg; sourceTree = "<group>"; };
-		88F00BD11938047A00DCA103 /* ESModalImageViewAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESModalImageViewAnimationController.h; sourceTree = "<group>"; };
-		88F00BD21938047A00DCA103 /* ESModalImageViewAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESModalImageViewAnimationController.m; sourceTree = "<group>"; };
-		88F00BD4193805A000DCA103 /* ESImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESImageViewController.h; sourceTree = "<group>"; };
-		88F00BD5193805A000DCA103 /* ESImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESImageViewController.m; sourceTree = "<group>"; };
+		88F00BD11938047A00DCA103 /* ESModalImageViewAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESModalImageViewAnimationController.h; path = Titanium/ESModalImageViewAnimationController.h; sourceTree = "<group>"; };
+		88F00BD21938047A00DCA103 /* ESModalImageViewAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESModalImageViewAnimationController.m; path = Titanium/ESModalImageViewAnimationController.m; sourceTree = "<group>"; };
+		88F00BD4193805A000DCA103 /* ESImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESImageViewController.h; path = Titanium/ESImageViewController.h; sourceTree = "<group>"; };
+		88F00BD5193805A000DCA103 /* ESImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESImageViewController.m; path = Titanium/ESImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +92,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88C0558B1953AE720009A643 /* Titanium */ = {
+			isa = PBXGroup;
+			children = (
+				88F00BD11938047A00DCA103 /* ESModalImageViewAnimationController.h */,
+				88F00BD21938047A00DCA103 /* ESModalImageViewAnimationController.m */,
+				88F00BD4193805A000DCA103 /* ESImageViewController.h */,
+				88F00BD5193805A000DCA103 /* ESImageViewController.m */,
+			);
+			name = Titanium;
+			sourceTree = "<group>";
+		};
 		88F00B881937F9C000DCA103 = {
 			isa = PBXGroup;
 			children = (
@@ -130,10 +141,7 @@
 				88F00BA61937F9C000DCA103 /* Main_iPhone.storyboard */,
 				88F00BCC1937FA5C00DCA103 /* ESTitaniumViewController.h */,
 				88F00BCD1937FA5C00DCA103 /* ESTitaniumViewController.m */,
-				88F00BD11938047A00DCA103 /* ESModalImageViewAnimationController.h */,
-				88F00BD21938047A00DCA103 /* ESModalImageViewAnimationController.m */,
-				88F00BD4193805A000DCA103 /* ESImageViewController.h */,
-				88F00BD5193805A000DCA103 /* ESImageViewController.m */,
+				88C0558B1953AE720009A643 /* Titanium */,
 				88F00BAF1937F9C000DCA103 /* Images.xcassets */,
 				88F00B9B1937F9C000DCA103 /* Supporting Files */,
 			);
