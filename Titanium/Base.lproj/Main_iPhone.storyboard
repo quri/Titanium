@@ -77,26 +77,9 @@
                     <view key="view" contentMode="scaleToFill" id="epl-Uu-0ad">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hC-Cu-seh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Nlt-yF-1m1" id="kuB-F4-7W6"/>
-                                    <outletCollection property="gestureRecognizers" destination="wgd-xS-pFg" appends="YES" id="boL-il-a7H"/>
-                                </connections>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="3hC-Cu-seh" firstAttribute="leading" secondItem="epl-Uu-0ad" secondAttribute="leading" id="Eif-zi-oBG"/>
-                            <constraint firstItem="3hC-Cu-seh" firstAttribute="top" secondItem="epl-Uu-0ad" secondAttribute="top" id="PNM-Pd-cdp"/>
-                            <constraint firstItem="djm-QQ-tX3" firstAttribute="top" secondItem="3hC-Cu-seh" secondAttribute="bottom" id="Rey-DX-I8C"/>
-                            <constraint firstAttribute="trailing" secondItem="3hC-Cu-seh" secondAttribute="trailing" id="epc-v7-r5y"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="scrollView" destination="3hC-Cu-seh" id="iPU-qQ-Hln"/>
                         <segue destination="VkF-Eh-SL7" kind="unwind" identifier="HideImage" unwindAction="hideImage:" id="t9p-x6-QtU"/>
                     </connections>
                 </viewController>

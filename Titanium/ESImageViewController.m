@@ -8,13 +8,13 @@
 
 #import "ESImageViewController.h"
 
-@interface ESImageViewController () <UIScrollViewDelegate>
+@interface ESImageViewController () <UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) UIPinchGestureRecognizer *pinchGestureRecognizer;
+@property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 
 @end
-
-UIStatusBarAnimation const kStatusBarAnimation = UIStatusBarAnimationSlide;
 
 @implementation ESImageViewController
 
@@ -32,9 +32,15 @@ UIStatusBarAnimation const kStatusBarAnimation = UIStatusBarAnimationSlide;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.scrollView.backgroundColor = [UIColor blackColor];
-    self.scrollView.minimumZoomScale = 1.0;
-    self.scrollView.delegate = self;
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    self.pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
+    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    
+    for (UIGestureRecognizer *recognizer in @[self.tapGestureRecognizer, self.pinchGestureRecognizer, self.panGestureRecognizer]) {
+        [recognizer setDelegate:self];
+    }
+    
+    [self.view addGestureRecognizer:self.tapGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,34 +59,14 @@ UIStatusBarAnimation const kStatusBarAnimation = UIStatusBarAnimationSlide;
     
     [imageView removeFromSuperview];
     _imageView = imageView;
+    [_imageView setUserInteractionEnabled:YES];
     
     [_imageView setContentMode:UIViewContentModeScaleAspectFit];
     
-    [self.scrollView setMaximumZoomScale:[self maximumZoomScaleForImageSize:imageView.image.size]];
-    [self.scrollView addSubview:_imageView];
+    [_imageView addGestureRecognizer:self.pinchGestureRecognizer];
+    [_imageView addGestureRecognizer:self.panGestureRecognizer];
     
-    NSLog(@"Scrollview %@", NSStringFromCGRect(self.scrollView.bounds));
-    NSLog(@"Imageview %@", NSStringFromCGRect(_imageView.frame));
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
-- (IBAction)handleTap:(id)sender {
-    
-    if (self.scrollView.zoomScale > 1.0) {
-        [self zoomOut];
-    } else {
-        [self dismissSelf];
-    }
-}
-
-- (void)zoomOut {
-    
-    [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:1.0 options:0 animations:^{
-        [self.scrollView setZoomScale:1.0];
-    } completion:nil];
+    [self.view addSubview:_imageView];
 }
 
 - (void)dismissSelf {
@@ -88,18 +74,95 @@ UIStatusBarAnimation const kStatusBarAnimation = UIStatusBarAnimationSlide;
     [self performSegueWithIdentifier:@"HideImage" sender:nil];
 }
 
-#pragma mark - Scroll view delegate
+#pragma mark - Gestures
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return self.imageView;
+- (void)adjustAnchorPointForGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        UIView *piece = gestureRecognizer.view;
+        CGPoint locationInView = [gestureRecognizer locationInView:piece];
+        CGPoint locationInSuperview = [gestureRecognizer locationInView:piece.superview];
+        
+        piece.layer.anchorPoint = CGPointMake(locationInView.x / piece.bounds.size.width, locationInView.y / piece.bounds.size.height);
+        piece.center = locationInSuperview;
+    }
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
+- (void)tap:(UITapGestureRecognizer *)regognizer {
     
-    NSLog(@"Zoom x%.2f, { %g, %g, %g, %g } in { %g, %g, %g, %g }",
-          scale,
-          view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height,
-          scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height);
+    UIView *content = self.imageView;
+    UIView *container = content.superview;
+    CGRect originalFrame = [self imageViewFrameForImage:self.image];
+    
+//    NSLog(@"%@, %@", NSStringFromCGRect(content.frame), NSStringFromCGRect(originalFrame));
+    
+    if (CGAffineTransformEqualToTransform(content.transform, CGAffineTransformIdentity) && CGRectEqualToRect([self roundedRectWithRect:content.frame], [self roundedRectWithRect:originalFrame])) { // rounding error de cul à marde!
+        [self dismissSelf];
+    } else {
+        CGFloat duration = 0.3;
+        
+        CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"anchorPoint"];
+        [anim setFromValue:[NSValue valueWithCGPoint:content.layer.anchorPoint]];
+        [anim setToValue:[NSValue valueWithCGPoint:CGPointMake(0.5, 0.5)]];
+        [anim setDuration:duration];
+        [anim setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+        [content.layer addAnimation:anim forKey:@"anchorPoint"];
+        [content.layer setAnchorPoint:CGPointMake(0.5, 0.5)];
+
+        [UIView animateWithDuration:duration animations:^{
+            [content setCenter:container.center];
+            [content setTransform:CGAffineTransformIdentity];
+        }];
+    }
+}
+
+- (void)pinch:(UIPinchGestureRecognizer *)recognizer {
+    
+    [self adjustAnchorPointForGestureRecognizer:recognizer];
+    
+    UIView *content = self.imageView;
+    
+    // TODO: make this right
+    CGFloat imageScale = self.imageView.frame.size.width / 320.0;
+    CGFloat const maxImageScale = 3.0;
+    
+    CGFloat zoomScale = (imageScale < 1 ? sqrt(recognizer.scale) : recognizer.scale);
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
+        [content setTransform:CGAffineTransformScale(content.transform, zoomScale, zoomScale)];
+        [recognizer setScale:1.0];
+    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        [UIView animateWithDuration:0.3 animations:^{
+            if (imageScale < 1.0) {
+                [content setTransform:CGAffineTransformIdentity];
+            } else if (imageScale > maxImageScale) {
+                [content setTransform:CGAffineTransformScale(CGAffineTransformIdentity, maxImageScale, maxImageScale)];
+            }
+        }];
+    }
+}
+
+- (void)pan:(UIPanGestureRecognizer *)recognizer {
+    
+    [self adjustAnchorPointForGestureRecognizer:recognizer];
+    
+    UIView *content = self.imageView;
+    UIView *container = content.superview;
+    
+//    BOOL outOfBounds = YES;
+    
+//    NSLog(@"content.frame = %@", NSStringFromCGRect(content.frame));
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
+        CGPoint translation = [recognizer translationInView:container];
+//        translation = (outOfBounds ? CGPointMake(sqrt(translation.x), sqrt(translation.y)) : translation);
+        [content setCenter:CGPointMake(content.center.x + translation.x, content.center.y + translation.y)];
+        [recognizer setTranslation:CGPointZero inView:container];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 #pragma mark - Math
@@ -137,6 +200,14 @@ UIStatusBarAnimation const kStatusBarAnimation = UIStatusBarAnimationSlide;
     
     return CGRectMake(x, y, width, height);
     return CGRectMake(0.0, 0.0, width, height);
+}
+
+- (CGRect)roundedRectWithRect:(CGRect)sourceRect {
+    
+    return CGRectMake(round(sourceRect.origin.x),
+                      round(sourceRect.origin.y),
+                      round(sourceRect.size.width),
+                      round(sourceRect.size.height));
 }
 
 @end
