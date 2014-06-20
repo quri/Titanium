@@ -23,6 +23,16 @@ static CGFloat const kMaskingDuration = 0.2;
 
 @implementation ESModalImageViewAnimationController
 
+- (instancetype)initWithThumbnailView:(UIImageView *)thumbnailView {
+    
+    self = [super init];
+    if (self) {
+        _thumbnailView = thumbnailView;
+    }
+    
+    return self;
+}
+
 #pragma mark - View controller animated transitioning
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {

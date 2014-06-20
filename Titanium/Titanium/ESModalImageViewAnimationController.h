@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UIImageView *thumbnailView;
 
+- (instancetype)initWithThumbnailView:(UIImageView *)thumbnailView;
+
 @end

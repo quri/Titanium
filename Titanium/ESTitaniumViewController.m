@@ -84,16 +84,12 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     
-    ESModalImageViewAnimationController *mivac = [ESModalImageViewAnimationController new];
-    [mivac setThumbnailView:self.tappedThumbnail];
-    return mivac;
+    return [[ESModalImageViewAnimationController alloc] initWithThumbnailView:self.tappedThumbnail];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     
-    ESModalImageViewAnimationController *mivac = [ESModalImageViewAnimationController new];
-    [mivac setThumbnailView:self.tappedThumbnail];
-    return mivac;
+    return [[ESModalImageViewAnimationController alloc] initWithThumbnailView:self.tappedThumbnail];
 }
 
 @end
