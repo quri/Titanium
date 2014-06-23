@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIImage *image;
 @property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIView *tappedThumbnail;
 
 - (CGRect)imageViewFrameForImage:(UIImage *)image;
 

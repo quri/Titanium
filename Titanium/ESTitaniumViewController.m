@@ -7,7 +7,6 @@
 //
 
 #import "ESTitaniumViewController.h"
-#import "ESModalImageViewAnimationController.h"
 #import "ESImageViewController.h"
 
 @interface ESTitaniumViewController () <UIViewControllerTransitioningDelegate>
@@ -66,11 +65,9 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
     
     if ([segue.identifier isEqualToString:kShowImageSegueIdentifier]) {
         ESImageViewController *destination = segue.destinationViewController;
-        [destination setTransitioningDelegate:self];
-        self.tappedThumbnail = (UIImageView *)[(UITapGestureRecognizer *)sender view];
-        UIImage *image = [self.tappedThumbnail image];
-        [destination setImage:image];
-        [destination setModalPresentationStyle:UIModalPresentationCustom];
+        UIImageView *tappedThumbnail = (UIImageView *)[(UITapGestureRecognizer *)sender view];
+        [destination setTappedThumbnail:tappedThumbnail];
+        [destination setImage:tappedThumbnail.image];
     }
 }
 
@@ -78,18 +75,6 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
 
 - (IBAction)hideImage:(UIStoryboardSegue *)segue {
 
-}
-
-#pragma mark - View controller transitioning delegate
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    
-    return [[ESModalImageViewAnimationController alloc] initWithThumbnailView:self.tappedThumbnail];
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    
-    return [[ESModalImageViewAnimationController alloc] initWithThumbnailView:self.tappedThumbnail];
 }
 
 @end

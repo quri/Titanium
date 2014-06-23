@@ -7,8 +7,9 @@
 //
 
 #import "ESImageViewController.h"
+#import "ESModalImageViewAnimationController.h"
 
-@interface ESImageViewController () <UIGestureRecognizerDelegate>
+@interface ESImageViewController () <UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchGestureRecognizer;
@@ -26,6 +27,12 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)awakeFromNib {
+    
+    [self setModalPresentationStyle:UIModalPresentationCustom];
+    [self setTransitioningDelegate:self];
 }
 
 - (void)viewDidLoad
@@ -230,6 +237,18 @@
                       round(sourceRect.origin.y),
                       round(sourceRect.size.width),
                       round(sourceRect.size.height));
+}
+
+#pragma mark - View controller transitioning delegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    
+    return [[ESModalImageViewAnimationController alloc] initWithThumbnailView:self.tappedThumbnail];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    
+    return [[ESModalImageViewAnimationController alloc] initWithThumbnailView:self.tappedThumbnail];
 }
 
 @end

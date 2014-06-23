@@ -10,8 +10,8 @@
 
 @interface ESModalImageViewAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 
-@property (nonatomic, strong) UIImageView *thumbnailView;
+@property (nonatomic, strong) UIView *thumbnailView;
 
-- (instancetype)initWithThumbnailView:(UIImageView *)thumbnailView;
+- (instancetype)initWithThumbnailView:(UIView *)thumbnailView;
 
 @end

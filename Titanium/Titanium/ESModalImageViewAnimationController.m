@@ -23,7 +23,7 @@ static CGFloat const kMaskingDuration = 0.2;
 
 @implementation ESModalImageViewAnimationController
 
-- (instancetype)initWithThumbnailView:(UIImageView *)thumbnailView {
+- (instancetype)initWithThumbnailView:(UIView *)thumbnailView {
     
     self = [super init];
     if (self) {
