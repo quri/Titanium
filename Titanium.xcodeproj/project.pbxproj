@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		881023541959D14E007F0CC2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		88B8AD96194901C8008E6DE2 /* C4S front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "C4S front.jpg"; sourceTree = "<group>"; };
 		88B8AD98194901D5008E6DE2 /* C2S top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "C2S top.jpg"; sourceTree = "<group>"; };
 		88C0558A1953A4470009A643 /* Titanium.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Titanium.podspec; sourceTree = SOURCE_ROOT; };
@@ -159,6 +160,7 @@
 				88F00BA01937F9C000DCA103 /* main.m */,
 				88F00BA21937F9C000DCA103 /* Titanium-Prefix.pch */,
 				88C0558A1953A4470009A643 /* Titanium.podspec */,
+				881023541959D14E007F0CC2 /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
