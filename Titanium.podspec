@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "git@github.com:quri/Titanium.git", :tag => "0.1" }
 
-  s.source_files  = 'Titanium/Titanium/*.{h,m}'
+  s.source_files = 'Titanium/Titanium/*.{h,m}'
 
   s.requires_arc = true
 
