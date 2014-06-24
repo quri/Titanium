@@ -10,10 +10,16 @@
 
 @interface ESImageViewController : UIViewController
 
+/**
+ *  The image that will be displayed. Make sure to set this property before presenting the controller.
+ */
 @property (nonatomic, strong) UIImage *image;
-@property (strong, nonatomic) UIImageView *imageView;
+
+/**
+ * The thumbnail view that corresponds to the image that will be displayed.
+ * This will be used to animate from the thumbnail into the full-screen imageView.
+ */
 @property (strong, nonatomic) UIView *tappedThumbnail;
 
-- (CGRect)imageViewFrameForImage:(UIImage *)image;
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Quri. All rights reserved.
 //
 
-#import "ESImageViewController.h"
+#import "ESImageViewController-Internals.h"
 #import "ESModalImageViewAnimationController.h"
 
 @interface ESImageViewController () <UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate>

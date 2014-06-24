@@ -7,7 +7,7 @@
 //
 
 #import "ESModalImageViewAnimationController.h"
-#import "ESImageViewController.h"
+#import "ESImageViewController-Internals.h"
 
 typedef NS_ENUM(BOOL, ESModalTransitionDirection) {
     ESModalTransitionDirectionPresenting = YES,

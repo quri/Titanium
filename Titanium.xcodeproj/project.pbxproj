@@ -39,7 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		881023541959D14E007F0CC2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		881023541959D14E007F0CC2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		881023551959E096007F0CC2 /* ESImageViewController-Internals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ESImageViewController-Internals.h"; sourceTree = "<group>"; };
 		88B8AD96194901C8008E6DE2 /* C4S front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "C4S front.jpg"; sourceTree = "<group>"; };
 		88B8AD98194901D5008E6DE2 /* C2S top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "C2S top.jpg"; sourceTree = "<group>"; };
 		88C0558A1953A4470009A643 /* Titanium.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Titanium.podspec; sourceTree = SOURCE_ROOT; };
@@ -99,6 +100,7 @@
 				88F00BD11938047A00DCA103 /* ESModalImageViewAnimationController.h */,
 				88F00BD21938047A00DCA103 /* ESModalImageViewAnimationController.m */,
 				88F00BD4193805A000DCA103 /* ESImageViewController.h */,
+				881023551959E096007F0CC2 /* ESImageViewController-Internals.h */,
 				88F00BD5193805A000DCA103 /* ESImageViewController.m */,
 			);
 			name = Titanium;
