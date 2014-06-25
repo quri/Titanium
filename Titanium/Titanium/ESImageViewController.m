@@ -18,6 +18,8 @@
 
 @end
 
+CGFloat const kMaxImageScale = 3.0;
+
 @implementation ESImageViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -99,6 +101,17 @@
     }
 }
 
+- (void)resetAnchorPointWithContent:(UIView *)content container:(UIView *)container andDuration:(CGFloat)duration {
+    
+    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"anchorPoint"];
+    [anim setFromValue:[NSValue valueWithCGPoint:content.layer.anchorPoint]];
+    [anim setToValue:[NSValue valueWithCGPoint:CGPointMake(0.5, 0.5)]];
+    [anim setDuration:duration];
+    [anim setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [content.layer addAnimation:anim forKey:@"anchorPoint"];
+    [content.layer setAnchorPoint:CGPointMake(0.5, 0.5)];
+}
+
 - (void)tap:(UITapGestureRecognizer *)regognizer {
     
     UIView *content = self.imageView;
@@ -111,15 +124,7 @@
         [self dismissSelf];
     } else {
         CGFloat duration = 0.3;
-        
-        CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"anchorPoint"];
-        [anim setFromValue:[NSValue valueWithCGPoint:content.layer.anchorPoint]];
-        [anim setToValue:[NSValue valueWithCGPoint:CGPointMake(0.5, 0.5)]];
-        [anim setDuration:duration];
-        [anim setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-        [content.layer addAnimation:anim forKey:@"anchorPoint"];
-        [content.layer setAnchorPoint:CGPointMake(0.5, 0.5)];
-
+        [self resetAnchorPointWithContent:content container:container andDuration:duration];
         [UIView animateWithDuration:duration animations:^{
             [content setCenter:container.center];
             [content setTransform:CGAffineTransformIdentity];
@@ -135,7 +140,6 @@
     
     // TODO: make this right
     CGFloat imageScale = self.imageView.frame.size.width / 320.0;
-    CGFloat const maxImageScale = 3.0;
     
     CGFloat zoomScale = (imageScale < 1 ? sqrt(recognizer.scale) : recognizer.scale);
     
@@ -146,8 +150,8 @@
         [UIView animateWithDuration:0.3 animations:^{
             if (imageScale < 1.0) {
                 [content setTransform:CGAffineTransformIdentity];
-            } else if (imageScale > maxImageScale) {
-                [content setTransform:CGAffineTransformScale(CGAffineTransformIdentity, maxImageScale, maxImageScale)];
+            } else if (imageScale > kMaxImageScale) {
+                [content setTransform:CGAffineTransformScale(CGAffineTransformIdentity, kMaxImageScale, kMaxImageScale)];
             }
         }];
     }
@@ -160,15 +164,27 @@
     UIView *content = self.imageView;
     UIView *container = content.superview;
     
-//    BOOL outOfBounds = YES;
+    // TODO: make this right
+    CGFloat imageScale = self.imageView.frame.size.width / 320.0;
     
-//    NSLog(@"content.frame = %@", NSStringFromCGRect(content.frame));
+    //    BOOL outOfBounds = YES;
+    
+    //    NSLog(@"content.frame = %@", NSStringFromCGRect(content.frame));
     
     if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
         CGPoint translation = [recognizer translationInView:container];
-//        translation = (outOfBounds ? CGPointMake(sqrt(translation.x), sqrt(translation.y)) : translation);
+        //        translation = (outOfBounds ? CGPointMake(sqrt(translation.x), sqrt(translation.y)) : translation);
         [content setCenter:CGPointMake(content.center.x + translation.x, content.center.y + translation.y)];
         [recognizer setTranslation:CGPointZero inView:container];
+    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (imageScale <= 1.0) {
+            CGFloat duration = 0.3;
+            [self resetAnchorPointWithContent:content container:container andDuration:duration];
+            [UIView animateWithDuration:0.3 animations:^{
+                [content setCenter:container.center];
+                [recognizer setTranslation:CGPointZero inView:container];
+            }];
+        }
     }
 }
 
