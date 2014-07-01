@@ -116,11 +116,9 @@ CGFloat const kMaxImageScale = 3.0;
     
     UIView *content = self.imageView;
     UIView *container = content.superview;
-    CGRect originalFrame = [self imageViewFrameForImage:self.image];
     
-//    NSLog(@"%@, %@", NSStringFromCGRect(content.frame), NSStringFromCGRect(originalFrame));
-    
-    if (CGAffineTransformEqualToTransform(content.transform, CGAffineTransformIdentity) && CGRectEqualToRect([self roundedRectWithRect:content.frame], [self roundedRectWithRect:originalFrame])) { // rounding error de cul à marde!
+    CGFloat horizontalZoomScale = sqrt(pow(content.transform.a, 2) + pow(content.transform.c, 2));
+    if (horizontalZoomScale == 1.0) { // As long as we keep zoomed-out content centered, this is good enough.
         [self dismissSelf];
     } else {
         CGFloat duration = 0.3;
