@@ -117,8 +117,8 @@ CGFloat const kMaxImageScale = 3.0;
     UIView *content = self.imageView;
     UIView *container = content.superview;
     
-    CGFloat horizontalZoomScale = sqrt(pow(content.transform.a, 2) + pow(content.transform.c, 2));
-    if (horizontalZoomScale == 1.0) { // As long as we keep zoomed-out content centered, this is good enough.
+    CGFloat horizontalScale = sqrt(pow(content.transform.a, 2) + pow(content.transform.c, 2));
+    if (horizontalScale == 1.0) { // As long as we keep zoomed-out content centered, this is good enough.
         [self dismissSelf];
     } else {
         CGFloat duration = 0.3;
@@ -136,19 +136,17 @@ CGFloat const kMaxImageScale = 3.0;
     
     UIView *content = self.imageView;
     
-    // TODO: make this right
-    CGFloat imageScale = self.imageView.frame.size.width / 320.0;
-    
-    CGFloat zoomScale = (imageScale < 1 ? sqrt(recognizer.scale) : recognizer.scale);
+    CGFloat horizontalScale = sqrt(pow(content.transform.a, 2) + pow(content.transform.c, 2));
+    CGFloat zoomScale = (horizontalScale < 1 ? sqrt(recognizer.scale) : recognizer.scale);
     
     if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
         [content setTransform:CGAffineTransformScale(content.transform, zoomScale, zoomScale)];
         [recognizer setScale:1.0];
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
         [UIView animateWithDuration:0.3 animations:^{
-            if (imageScale < 1.0) {
+            if (horizontalScale < 1.0) {
                 [content setTransform:CGAffineTransformIdentity];
-            } else if (imageScale > kMaxImageScale) {
+            } else if (horizontalScale > kMaxImageScale) {
                 [content setTransform:CGAffineTransformScale(CGAffineTransformIdentity, kMaxImageScale, kMaxImageScale)];
             }
         } completion:^(BOOL finished) {
