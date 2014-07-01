@@ -153,6 +153,10 @@ CGFloat const kMaxImageScale = 3.0;
             } else if (imageScale > kMaxImageScale) {
                 [content setTransform:CGAffineTransformScale(CGAffineTransformIdentity, kMaxImageScale, kMaxImageScale)];
             }
+        } completion:^(BOOL finished) {
+//            UIView *acceptableRect = [[UIView alloc] initWithFrame:[self acceptableCenterPointRectForImageSize:content.frame.size]];
+//            [acceptableRect setBackgroundColor:[[UIColor yellowColor] colorWithAlphaComponent:0.5]];
+//            [self.view addSubview:acceptableRect];
         }];
     }
 }
@@ -164,27 +168,31 @@ CGFloat const kMaxImageScale = 3.0;
     UIView *content = self.imageView;
     UIView *container = content.superview;
     
-    // TODO: make this right
-    CGFloat imageScale = self.imageView.frame.size.width / 320.0;
-    
-    //    BOOL outOfBounds = YES;
-    
-    //    NSLog(@"content.frame = %@", NSStringFromCGRect(content.frame));
-    
     if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
         CGPoint translation = [recognizer translationInView:container];
-        //        translation = (outOfBounds ? CGPointMake(sqrt(translation.x), sqrt(translation.y)) : translation);
         [content setCenter:CGPointMake(content.center.x + translation.x, content.center.y + translation.y)];
         [recognizer setTranslation:CGPointZero inView:container];
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if (imageScale <= 1.0) {
-            CGFloat duration = 0.3;
-            [self resetAnchorPointWithContent:content container:container andDuration:duration];
-            [UIView animateWithDuration:0.3 animations:^{
-                [content setCenter:container.center];
-                [recognizer setTranslation:CGPointZero inView:container];
-            }];
-        }
+        
+        CGPoint velocity = [recognizer velocityInView:container];
+        CGFloat factor = 0.1;
+        CGPoint inertia = CGPointMake(content.center.x + velocity.x * factor, content.center.y + velocity.y * factor);
+
+        [self resetAnchorPointWithContent:content container:container andDuration:0.3];
+
+        [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:1.0 options:0 animations:^{
+            
+//            [content setCenter:inertia];
+            [content setCenter:[self pointClosestToPoint:content.center inRect:[self acceptableCenterPointRectForImageSize:content.frame.size]]];
+
+            [recognizer setTranslation:CGPointZero inView:container];
+        } completion:^(BOOL finished){
+            if (finished) {
+                [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0.0 options:0 animations:^{
+//                    [content setCenter:[self pointClosestToPoint:content.center inRect:[self acceptableCenterPointRectForImageSize:content.frame.size]]];
+                } completion:nil];
+            }
+        }];
     }
 }
 
@@ -193,7 +201,9 @@ CGFloat const kMaxImageScale = 3.0;
     UIView *content = self.imageView;
     
     [UIView animateWithDuration:0.3 animations:^{
-        [content setTransform:CGAffineTransformScale(content.transform, 3.0, 3.0)];
+        if (CGAffineTransformEqualToTransform(content.transform, CGAffineTransformIdentity)) {
+            [content setTransform:CGAffineTransformScale(content.transform, kMaxImageScale, kMaxImageScale)];
+        }
     }];
 }
 
@@ -253,6 +263,47 @@ CGFloat const kMaxImageScale = 3.0;
                       round(sourceRect.origin.y),
                       round(sourceRect.size.width),
                       round(sourceRect.size.height));
+}
+
+- (CGRect)acceptableCenterPointRectForImageSize:(CGSize)imageSize {
+    
+    CGSize const screenSize = self.view.frame.size;
+    CGPoint const origin = CGPointMake(screenSize.width - imageSize.width / 2.0, screenSize.height - imageSize.height / 2.0);
+    CGSize const size = CGSizeMake(screenSize.width - origin.x * 2.0, screenSize.height - origin.y * 2.0);
+    
+    CGFloat const kMinimumDefault = 1.0;
+    CGPoint const screenCenter = self.view.center;
+    return CGRectMake((size.width > 0.0 ? origin.x : screenCenter.x),
+                      (size.height > 0.0 ? origin.y : screenCenter.y),
+                      MAX(size.width, kMinimumDefault),
+                      MAX(size.height, kMinimumDefault));
+}
+
+- (CGPoint)pointClosestToPoint:(CGPoint)point inRect:(CGRect)rect {
+    
+    if (CGRectContainsPoint(rect, point)) return point;
+    
+    CGFloat x = 0.0;
+    
+    if (point.x < CGRectGetMinX(rect)) {
+        x = CGRectGetMinX(rect);
+    } else if (point.x > CGRectGetMaxX(rect)) {
+        x = CGRectGetMaxX(rect);
+    } else {
+        x = point.x;
+    }
+    
+    CGFloat y = 0.0;
+    
+    if (point.y < CGRectGetMinY(rect)) {
+        y = CGRectGetMinY(rect);
+    } else if (point.y > CGRectGetMaxY(rect)) {
+        y = CGRectGetMaxY(rect);
+    } else {
+        y = point.y;
+    }
+    
+    return CGPointMake(x, y);
 }
 
 #pragma mark - View controller transitioning delegate
