@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *thumbnailViews;
+@property (weak, nonatomic) IBOutlet UIImageView *extraThumbnail;
 @property (strong, nonatomic) NSArray *images;
 
 @property (strong, nonatomic) UIImageView *tappedThumbnail;
@@ -52,6 +53,9 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showImageView:)];
         [view addGestureRecognizer:recognizer];
     }];
+    
+    [self.extraThumbnail setImage:self.images[0]];
+    [self.extraThumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFrenchman)]];
 }
 
 #pragma mark - Navigation
@@ -69,6 +73,15 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
         [destination setTappedThumbnail:tappedThumbnail];
         [destination setImage:tappedThumbnail.image];
     }
+}
+
+#pragma mark - Old school nav
+
+- (void)showFrenchman {
+    ESImageViewController *ivc = [[ESImageViewController alloc] init];
+    [ivc setTappedThumbnail:self.extraThumbnail];
+    [ivc setImage:self.extraThumbnail.image];
+    [self presentViewController:ivc animated:YES completion:nil];
 }
 
 #pragma mark - Unwind segues

@@ -27,6 +27,8 @@ CGFloat const kMaxImageScale = 3.0;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self setModalPresentationStyle:UIModalPresentationCustom];
+        [self setTransitioningDelegate:self];
     }
     return self;
 }
@@ -64,6 +66,7 @@ CGFloat const kMaxImageScale = 3.0;
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    [self.view setBackgroundColor:[UIColor blackColor]];
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
@@ -84,7 +87,8 @@ CGFloat const kMaxImageScale = 3.0;
 
 - (void)dismissSelf {
     
-    [self performSegueWithIdentifier:@"HideImage" sender:nil];
+//    [self performSegueWithIdentifier:@"HideImage" sender:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Gestures

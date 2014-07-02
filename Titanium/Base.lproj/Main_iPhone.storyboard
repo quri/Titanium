@@ -34,6 +34,15 @@
                                     <constraint firstAttribute="height" constant="100" id="9F8-Kg-GJP"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="atD-2n-KAX">
+                                <rect key="frame" x="184" y="177" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="h9e-B0-4MK"/>
+                                    <constraint firstAttribute="height" constant="100" id="o0I-bv-5Pj"/>
+                                </constraints>
+                            </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75X-63-Nkz">
                                 <rect key="frame" x="184" y="37" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,15 +55,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="atD-2n-KAX" firstAttribute="leading" secondItem="75X-63-Nkz" secondAttribute="leading" id="37N-9W-8XK"/>
                             <constraint firstItem="Yn8-kV-6W1" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="17" id="EHL-PC-REw"/>
                             <constraint firstItem="75X-63-Nkz" firstAttribute="leading" secondItem="Yn8-kV-6W1" secondAttribute="trailing" constant="43" id="UNC-oY-yHh"/>
                             <constraint firstItem="iHD-AK-1SW" firstAttribute="leading" secondItem="Yn8-kV-6W1" secondAttribute="leading" id="ck6-Zu-vFl"/>
                             <constraint firstItem="iHD-AK-1SW" firstAttribute="top" secondItem="Yn8-kV-6W1" secondAttribute="bottom" constant="40" id="doV-t4-7Rm"/>
                             <constraint firstItem="Yn8-kV-6W1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="41" id="kX3-Cb-rgl"/>
                             <constraint firstItem="Yn8-kV-6W1" firstAttribute="top" secondItem="75X-63-Nkz" secondAttribute="top" id="pzl-7b-zJj"/>
+                            <constraint firstItem="atD-2n-KAX" firstAttribute="top" secondItem="iHD-AK-1SW" secondAttribute="top" id="tKF-cg-tfl"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="extraThumbnail" destination="atD-2n-KAX" id="TNO-Oe-0zX"/>
                         <outlet property="imageView" destination="Yn8-kV-6W1" id="Cv2-pc-Mqb"/>
                         <outletCollection property="thumbnailViews" destination="Yn8-kV-6W1" id="PtL-bF-wRI"/>
                         <outletCollection property="thumbnailViews" destination="iHD-AK-1SW" id="VMj-gb-ssr"/>
