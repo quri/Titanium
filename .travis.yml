@@ -6,4 +6,3 @@ before_install:
 - gem install cocoapods --no-ri --no-rdoc
 script:
 - xcodebuild -workspace Titanium.xcworkspace -scheme Titanium -sdk iphonesimulator test
-- if [[ "$TRAVIS_BRANCH" == "master" ]]; then xctool -workspace Titanium.xcworkspace -scheme Titanium -configuration "Release" -sdk iphoneos OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO; fi
