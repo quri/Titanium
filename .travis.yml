@@ -5,4 +5,4 @@ before_install:
 - brew install s3cmd
 - gem install cocoapods --no-ri --no-rdoc
 script:
-- xcodebuild -workspace Titanium.xcworkspace -scheme Titanium -sdk iphonesimulator test
+- xcodebuild -project Titanium.xcodeproj -scheme Titanium -sdk iphonesimulator test
