@@ -57,10 +57,10 @@ static CGFloat const kMaskingDuration = 0.2;
     ESImageViewController *presentedViewController = (ESImageViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     UIView *presentedView = presentedViewController.view;
-    UIView *originView = [transitionContext containerView];
+    UIView *containerView = [transitionContext containerView];
     
     [presentedView setAlpha:0.0];
-    [originView insertSubview:presentedView aboveSubview:originView];
+    [containerView insertSubview:presentedView aboveSubview:containerView];
     
     UIImage *image = presentedViewController.image;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:[presentedViewController imageViewFrameForImage:presentedViewController.image]];
@@ -68,10 +68,11 @@ static CGFloat const kMaskingDuration = 0.2;
     
     CALayer *mask = [self maskWithImageViewFrame:imageView.frame direction:ESModalTransitionDirectionPresenting animated:YES];
     [imageView.layer setMask:mask];
-    [imageView setTransform:[self affineTransformWithImageViewFrame:imageView.frame andThumbnailFrame:self.thumbnailView.frame]];
+    CGRect frameRelativeToContainer = [containerView convertRect:self.thumbnailView.frame fromView:self.thumbnailView.superview];
+    [imageView setTransform:[self affineTransformWithImageViewFrame:imageView.frame andThumbnailFrame:frameRelativeToContainer]];
 
     [self.thumbnailView setHidden:YES];
-    [originView insertSubview:imageView aboveSubview:presentedView];
+    [containerView insertSubview:imageView aboveSubview:presentedView];
     
     CGFloat duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
@@ -100,7 +101,8 @@ static CGFloat const kMaskingDuration = 0.2;
     [imageView.layer setMask:mask];
     
     [UIView animateWithDuration:duration*0.6 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:1.0 options:0 animations:^{
-        [imageView setTransform:[self affineTransformWithImageViewFrame:imageView.frame andThumbnailFrame:self.thumbnailView.frame]];
+        CGRect frameRelativeToContainer = [containerView convertRect:self.thumbnailView.frame fromView:self.thumbnailView.superview];
+        [imageView setTransform:[self affineTransformWithImageViewFrame:imageView.frame andThumbnailFrame:frameRelativeToContainer]];
         [fromView setAlpha:0.0];
     } completion:^(BOOL finished) {
         [self.thumbnailView setHidden:NO];
