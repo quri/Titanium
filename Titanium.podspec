@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Titanium"
-  s.version      = "0.3"
+  s.version      = "0.4"
   s.summary      = "Image viewer library"
 
   s.description  = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '7.0'
 
-  s.source       = { :git => "git@github.com:quri/Titanium.git", :tag => "0.3" }
+  s.source       = { :git => "git@github.com:quri/Titanium.git", :tag => "0.4" }
 
   s.source_files = 'Titanium/Titanium/*.{h,m}'
 
