@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/quri/Titanium.svg?branch=master)](https://travis-ci.org/quri/Titanium)
 Titanium
 ========
 
