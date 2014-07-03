@@ -114,12 +114,20 @@ static CGFloat const kMaskingDuration = 0.15;
 
 - (CGAffineTransform)affineTransformWithImageViewFrame:(CGRect)imageViewFrame andThumbnailFrame:(CGRect)thumbnailFrame {
     
-    CGFloat scaleFactor = 0.0;
-    if (frameIsPortrait(imageViewFrame)) {
-        scaleFactor = thumbnailFrame.size.width / imageViewFrame.size.width;
-    } else {
-        scaleFactor = thumbnailFrame.size.height / imageViewFrame.size.height;
-    }
+    CGFloat scaleFactor = ^CGFloat {
+        CGFloat factor;
+        
+        CGFloat const imageRatio = imageViewFrame.size.width / imageViewFrame.size.height;
+        CGFloat const thumbnailRatio = thumbnailFrame.size.width / thumbnailFrame.size.height;
+        
+        if (thumbnailRatio > imageRatio) {
+            factor = thumbnailFrame.size.width / imageViewFrame.size.width;
+        } else {
+            factor = thumbnailFrame.size.height / imageViewFrame.size.height;
+        }
+        
+        return factor;
+    }();
     
     CGAffineTransform scale = CGAffineTransformMakeScale(scaleFactor, scaleFactor);
     
@@ -145,7 +153,7 @@ static CGFloat const kMaskingDuration = 0.15;
         width = imageViewSize.width;
         height = width / thumbnailRatio;
         y = (imageViewSize.height - height) / 2.0;
-    } else {                        // Left-right cropping
+    } else {                               // Left-right cropping
         height = imageViewSize.height;
         width = height * thumbnailRatio;
         x = (imageViewSize.width - width) / 2.0;
