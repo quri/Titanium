@@ -103,6 +103,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <segue destination="VkF-Eh-SL7" kind="unwind" identifier="HideImage" unwindAction="hideImage:" id="t9p-x6-QtU"/>
                     </connections>

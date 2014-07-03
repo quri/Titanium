@@ -64,10 +64,16 @@ CGFloat const kMaxImageScale = 3.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
     [super viewWillAppear:animated];
+    
     [self.view setBackgroundColor:[UIColor blackColor]];
-    [self setNeedsStatusBarAppearanceUpdate];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)setImageView:(UIImageView *)imageView {
@@ -88,6 +94,10 @@ CGFloat const kMaxImageScale = 3.0;
 - (void)dismissSelf {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 #pragma mark - Gestures

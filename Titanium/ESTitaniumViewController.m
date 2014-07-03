@@ -48,6 +48,7 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    
     [self.thumbnailViews enumerateObjectsUsingBlock:^(UIImageView *view, NSUInteger idx, BOOL *stop) {
         [view setImage:self.images[idx]];
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showImageView:)];

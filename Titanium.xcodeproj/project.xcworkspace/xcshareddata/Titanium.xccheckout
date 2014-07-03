@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>84FB6B4E-8A6B-420F-B17A-A660FC4E4F6C</string>
+	<string>4F5284DD-340D-442A-B516-C79C8678E1A7</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Titanium</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>1EDAFB05-DEA4-4B4B-92DD-FA5E43FEFFBA</key>
-		<string>ssh://github.com/quri/Titanium.git</string>
+		<key>818C1BD7-6752-4CE8-94D4-0C9E62A35FE2</key>
+		<string>ssh://github.com/Quri/Titanium.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Titanium.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>1EDAFB05-DEA4-4B4B-92DD-FA5E43FEFFBA</key>
+		<key>818C1BD7-6752-4CE8-94D4-0C9E62A35FE2</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/quri/Titanium.git</string>
+	<string>ssh://github.com/Quri/Titanium.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>1EDAFB05-DEA4-4B4B-92DD-FA5E43FEFFBA</string>
+	<string>818C1BD7-6752-4CE8-94D4-0C9E62A35FE2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>1EDAFB05-DEA4-4B4B-92DD-FA5E43FEFFBA</string>
+			<string>818C1BD7-6752-4CE8-94D4-0C9E62A35FE2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Titanium</string>
 		</dict>
