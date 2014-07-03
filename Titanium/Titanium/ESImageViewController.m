@@ -76,7 +76,7 @@ CGFloat const kMaxImageScale = 3.0;
     _imageView = imageView;
     [_imageView setUserInteractionEnabled:YES];
     
-    [_imageView setContentMode:UIViewContentModeScaleAspectFit];
+//    [_imageView setContentMode:UIViewContentModeScaleAspectFit];
     
     [_imageView addGestureRecognizer:self.pinchGestureRecognizer];
     [_imageView addGestureRecognizer:self.panGestureRecognizer];
@@ -87,7 +87,6 @@ CGFloat const kMaxImageScale = 3.0;
 
 - (void)dismissSelf {
     
-//    [self performSegueWithIdentifier:@"HideImage" sender:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
