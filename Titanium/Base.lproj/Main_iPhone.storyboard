@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -17,65 +17,64 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yn8-kV-6W1">
-                                <rect key="frame" x="41" y="37" width="100" height="100"/>
+                                <rect key="frame" x="20" y="37" width="145" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="TF6-D6-bKp"/>
-                                    <constraint firstAttribute="height" constant="100" id="feV-7j-Qij"/>
+                                    <constraint firstAttribute="width" constant="145" id="CtG-IU-PfB"/>
+                                    <constraint firstAttribute="height" constant="100" id="gpI-Ag-U0n"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="atD-2n-KAX">
-                                <rect key="frame" x="184" y="177" width="100" height="100"/>
+                                <rect key="frame" x="29" y="173" width="100" height="159"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="h9e-B0-4MK"/>
-                                    <constraint firstAttribute="height" constant="100" id="o0I-bv-5Pj"/>
+                                    <constraint firstAttribute="height" constant="159" id="o0I-bv-5Pj"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75X-63-Nkz">
-                                <rect key="frame" x="184" y="37" width="100" height="100"/>
+                                <rect key="frame" x="200" y="62" width="100" height="226"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="irb-Nv-WkR"/>
-                                    <constraint firstAttribute="width" constant="100" id="lck-Mg-iFx"/>
-                                </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2r1-3T-D3M">
-                                <rect key="frame" x="41" y="310" width="243" height="238"/>
+                                <rect key="frame" x="41" y="374" width="243" height="174"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iHD-AK-1SW">
-                                        <rect key="frame" x="20" y="20" width="100" height="100"/>
+                                        <rect key="frame" x="20" y="22" width="141" height="100"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="iPg-Hz-tQT"/>
-                                            <constraint firstAttribute="height" constant="100" id="mox-nq-3hP"/>
+                                            <constraint firstAttribute="width" constant="141" id="4jQ-10-cPX"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="iHD-AK-1SW" firstAttribute="leading" secondItem="2r1-3T-D3M" secondAttribute="leading" constant="20" symbolic="YES" id="MGz-1Y-6CD"/>
-                                    <constraint firstItem="iHD-AK-1SW" firstAttribute="top" secondItem="2r1-3T-D3M" secondAttribute="top" constant="20" symbolic="YES" id="dJT-Nd-7tI"/>
+                                    <constraint firstAttribute="bottom" secondItem="iHD-AK-1SW" secondAttribute="bottom" constant="52" id="OiF-PX-DpS"/>
+                                    <constraint firstAttribute="trailing" secondItem="iHD-AK-1SW" secondAttribute="trailing" constant="82" id="iEX-yK-SZH"/>
+                                    <constraint firstItem="iHD-AK-1SW" firstAttribute="leading" secondItem="2r1-3T-D3M" secondAttribute="leading" constant="20" symbolic="YES" id="jFn-ii-6Vn"/>
+                                    <constraint firstItem="iHD-AK-1SW" firstAttribute="top" secondItem="2r1-3T-D3M" secondAttribute="top" constant="22" id="r4E-o7-Cfd"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="atD-2n-KAX" firstAttribute="leading" secondItem="75X-63-Nkz" secondAttribute="leading" id="37N-9W-8XK"/>
-                            <constraint firstItem="2r1-3T-D3M" firstAttribute="top" secondItem="atD-2n-KAX" secondAttribute="bottom" constant="33" id="5kj-DE-AbB"/>
-                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="17" id="EHL-PC-REw"/>
-                            <constraint firstItem="2r1-3T-D3M" firstAttribute="leading" secondItem="Yn8-kV-6W1" secondAttribute="leading" id="Sh5-fT-L4y"/>
-                            <constraint firstItem="75X-63-Nkz" firstAttribute="leading" secondItem="Yn8-kV-6W1" secondAttribute="trailing" constant="43" id="UNC-oY-yHh"/>
-                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="41" id="kX3-Cb-rgl"/>
-                            <constraint firstItem="2r1-3T-D3M" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="310" id="mMJ-YH-wKL"/>
-                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="top" secondItem="75X-63-Nkz" secondAttribute="top" id="pzl-7b-zJj"/>
+                            <constraint firstItem="2r1-3T-D3M" firstAttribute="top" secondItem="atD-2n-KAX" secondAttribute="bottom" constant="42" id="5kj-DE-AbB"/>
+                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="bottom" secondItem="75X-63-Nkz" secondAttribute="bottom" constant="-151" id="C3m-rp-NjJ"/>
+                            <constraint firstAttribute="trailing" secondItem="atD-2n-KAX" secondAttribute="trailing" constant="191" id="Im9-aL-Zv8"/>
+                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="top" secondItem="75X-63-Nkz" secondAttribute="top" constant="-25" id="VUZ-yW-pH1"/>
+                            <constraint firstAttribute="trailing" secondItem="75X-63-Nkz" secondAttribute="trailing" constant="20" symbolic="YES" id="bZK-xA-jSv"/>
+                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="17" id="i3S-fB-ovf"/>
+                            <constraint firstItem="atD-2n-KAX" firstAttribute="trailing" secondItem="2r1-3T-D3M" secondAttribute="trailing" constant="-155" id="jBp-TK-1de"/>
+                            <constraint firstItem="2r1-3T-D3M" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="374" id="mMJ-YH-wKL"/>
                             <constraint firstAttribute="bottom" secondItem="2r1-3T-D3M" secondAttribute="bottom" constant="20" symbolic="YES" id="uZa-8F-mwb"/>
-                            <constraint firstItem="2r1-3T-D3M" firstAttribute="trailing" secondItem="atD-2n-KAX" secondAttribute="trailing" id="x4R-pv-CD8"/>
+                            <constraint firstItem="75X-63-Nkz" firstAttribute="leading" secondItem="Yn8-kV-6W1" secondAttribute="trailing" constant="35" id="wa5-na-s9C"/>
+                            <constraint firstItem="2r1-3T-D3M" firstAttribute="trailing" secondItem="atD-2n-KAX" secondAttribute="trailing" constant="155" id="x4R-pv-CD8"/>
+                            <constraint firstItem="Yn8-kV-6W1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="xF2-GR-ys8"/>
                         </constraints>
                     </view>
                     <connections>
