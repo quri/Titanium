@@ -1,4 +1,8 @@
-[![Build Status](https://travis-ci.org/quri/Titanium.svg?branch=master)](https://travis-ci.org/quri/Titanium)
+[![Platform](https://img.shields.io/cocoapods/p/Titanium.svg?style=flat)](http://cocoadocs.org/docsets/Titanium)
+[![Version](https://img.shields.io/cocoapods/v/Titanium.svg?style=flat)](http://cocoadocs.org/docsets/Titanium)
+[![CI](http://img.shields.io/travis/quri/Titanium.svg?style=flat)](https://travis-ci.org/quri/Titanium)
+[![License](https://img.shields.io/cocoapods/l/Titanium.svg?style=flat)](http://cocoadocs.org/docsets/Titanium)
+
 Titanium
 ========
 
