@@ -202,26 +202,33 @@ CGFloat const kMaxImageScale = 3.0;
         CGFloat const linearVelocity = sqrt(pow(velocity.x, 2) + pow(velocity.y, 2));
         CGFloat const duration = MIN(linearVelocity * 0.0004, 0.8);
         
-        if (acceptable) {
-            
-//            if (linearVelocity >= 200.0) {
-//                
-//                [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//                    [content setCenter:destination];
-//                } completion:nil];
-//                
-//            }
-        } else {
-            [self resetAnchorPointWithContent:content container:container andDuration:0.3];
+//        if (acceptable) {
+            if (linearVelocity >= 200.0) {
+                CGPoint acceptableDestination = [self pointClosestToPoint:destination inRect:acceptableRect];
 
-            [UIView animateWithDuration:0.3 animations:^{
-                CGPoint newCenter = [self pointClosestToPoint:destination inRect:acceptableRect];
-                NSLog(@"acceptableRect: %@", NSStringFromCGRect(acceptableRect));
-                NSLog(@"destination: %@", NSStringFromCGPoint(destination));
-                NSLog(@"newCenter: %@", NSStringFromCGPoint(newCenter));
-                [content setCenter:newCenter];
-            }];
-        }
+                CGFloat destinationDelta = ^CGFloat(){
+                    CGFloat horizontalDelta = ABS(destination.x - acceptableDestination.x);
+                    CGFloat verticalDelta = ABS(destination.y - acceptableDestination.y);
+                    return sqrt(pow(horizontalDelta, 2) + pow(verticalDelta, 2));
+                }();
+                
+                CGFloat dampingMultipiler = 0.1;
+                CGFloat dampingRatio = 1.0 - 0.2 * (dampingMultipiler * destinationDelta) / (dampingMultipiler * destinationDelta + 1.0);
+                NSLog(@"∆ = %fpt; damping = %f", destinationDelta, dampingRatio);
+                
+                [self resetAnchorPointWithContent:content container:container andDuration:duration];
+                [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:dampingRatio initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                    [content setCenter:acceptableDestination];
+                } completion:nil];
+            }
+//        } else {
+//            [self resetAnchorPointWithContent:content container:container andDuration:0.3];
+//
+//            [UIView animateWithDuration:0.3 animations:^{
+//                CGPoint newCenter = [self pointClosestToPoint:destination inRect:acceptableRect];
+//                [content setCenter:newCenter];
+//            }];
+//        }
     }
 }
 
