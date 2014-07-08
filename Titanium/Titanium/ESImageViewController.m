@@ -200,26 +200,36 @@ CGFloat const kMaxImageScale = 3.0;
         CGPoint const destination = CGPointMake(content.center.x + velocity.x * inertiaRatio, content.center.y + velocity.y * inertiaRatio);
         
         CGFloat const linearVelocity = sqrt(pow(velocity.x, 2) + pow(velocity.y, 2));
-        CGFloat const duration = MIN(linearVelocity * 0.0004, 0.8);
+        
+        CGPoint const acceptableDestination = [self pointClosestToPoint:destination inRect:acceptableRect];
+
+        CGFloat destinationDelta = ^CGFloat(){
+            CGFloat horizontalDelta = ABS(destination.x - acceptableDestination.x);
+            CGFloat verticalDelta = ABS(destination.y - acceptableDestination.y);
+            return sqrt(pow(horizontalDelta, 2) + pow(verticalDelta, 2));
+        }();
         
 //        if (acceptable) {
             if (linearVelocity >= 200.0) {
-                CGPoint acceptableDestination = [self pointClosestToPoint:destination inRect:acceptableRect];
 
-                CGFloat destinationDelta = ^CGFloat(){
-                    CGFloat horizontalDelta = ABS(destination.x - acceptableDestination.x);
-                    CGFloat verticalDelta = ABS(destination.y - acceptableDestination.y);
-                    return sqrt(pow(horizontalDelta, 2) + pow(verticalDelta, 2));
-                }();
-                
-                CGFloat dampingMultipiler = 0.1;
-                CGFloat dampingRatio = 1.0 - 0.2 * (dampingMultipiler * destinationDelta) / (dampingMultipiler * destinationDelta + 1.0);
-                NSLog(@"∆ = %fpt; damping = %f", destinationDelta, dampingRatio);
+                CGFloat const duration = MIN(linearVelocity * 0.0004, 0.8);
+                CGFloat const dampingMultipiler = 0.1;
+                CGFloat const dampingRatio = 1.0 - 0.2 * (dampingMultipiler * destinationDelta) / (dampingMultipiler * destinationDelta + 1.0);
+//                NSLog(@"∆ = %fpt; damping = %f", destinationDelta, dampingRatio);
                 
                 [self resetAnchorPointWithContent:content container:container andDuration:duration];
                 [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:dampingRatio initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                     [content setCenter:acceptableDestination];
                 } completion:nil];
+            } else {
+                
+                NSLog(@"∆ = %f", destinationDelta);
+                CGFloat const duration = MIN(0.3, 0.001 * destinationDelta + 0.1);
+                
+                [self resetAnchorPointWithContent:content container:container andDuration:duration];
+                [UIView animateWithDuration:duration animations:^{
+                    [content setCenter:acceptableDestination];
+                }];
             }
 //        } else {
 //            [self resetAnchorPointWithContent:content container:container andDuration:0.3];
@@ -244,6 +254,12 @@ CGFloat const kMaxImageScale = 3.0;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    
+    if ((gestureRecognizer == self.tapGestureRecognizer && otherGestureRecognizer == self.panGestureRecognizer) ||
+        (gestureRecognizer == self.panGestureRecognizer && otherGestureRecognizer == self.tapGestureRecognizer)) {
+        return NO;
+    }
+    
     return YES;
 }
 
