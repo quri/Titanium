@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yn8-kV-6W1">
@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="atD-2n-KAX">
-                                <rect key="frame" x="29" y="173" width="100" height="159"/>
+                                <rect key="frame" x="277" y="173" width="100" height="159"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -35,16 +35,16 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75X-63-Nkz">
-                                <rect key="frame" x="200" y="62" width="100" height="226"/>
+                                <rect key="frame" x="200" y="62" width="348" height="226"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2r1-3T-D3M">
-                                <rect key="frame" x="41" y="374" width="243" height="174"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2r1-3T-D3M">
+                                <rect key="frame" x="289" y="374" width="243" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iHD-AK-1SW">
-                                        <rect key="frame" x="20" y="22" width="141" height="100"/>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHD-AK-1SW">
+                                        <rect key="frame" x="20" y="22" width="141" height="0.0"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -76,7 +76,9 @@
                             <constraint firstItem="2r1-3T-D3M" firstAttribute="trailing" secondItem="atD-2n-KAX" secondAttribute="trailing" constant="155" id="x4R-pv-CD8"/>
                             <constraint firstItem="Yn8-kV-6W1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="xF2-GR-ys8"/>
                         </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="extraThumbnail" destination="atD-2n-KAX" id="TNO-Oe-0zX"/>
                         <outlet property="imageView" destination="Yn8-kV-6W1" id="Cv2-pc-Mqb"/>
@@ -99,9 +101,10 @@
                         <viewControllerLayoutGuide type="bottom" id="djm-QQ-tX3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="epl-Uu-0ad">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <segue destination="VkF-Eh-SL7" kind="unwind" identifier="HideImage" unwindAction="hideImage:" id="t9p-x6-QtU"/>
@@ -115,7 +118,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="178" y="-199"/>
+            <point key="canvasLocation" x="329" y="-199"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
