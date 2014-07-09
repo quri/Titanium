@@ -1,7 +1,11 @@
 Pod::Spec.new do |s|
 
   s.name         = "Titanium"
+
   s.version      = "0.7"
+  
+  s.license      = { :type => "MIT" }
+
   s.summary      = "Image viewer library"
 
   s.description  = <<-DESC
