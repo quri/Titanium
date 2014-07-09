@@ -58,6 +58,10 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
     [self.extraThumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFrenchman)]];
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - Navigation
 
 - (void)showImageView:(id)sender {

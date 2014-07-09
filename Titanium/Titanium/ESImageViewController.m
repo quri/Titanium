@@ -16,11 +16,15 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTapGestureRecognizer;
 
+@property (assign) CGFloat orientationAngle;
+
 @end
 
 CGFloat const kMaxImageScale = 3.0;
 
 @implementation ESImageViewController
+
+#pragma mark - View life cycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +59,16 @@ CGFloat const kMaxImageScale = 3.0;
     }
     
     [self.view addGestureRecognizer:self.tapGestureRecognizer];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIDeviceOrientationDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+        [self deviceWillRotateTo:orientation];
+    }];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,6 +99,7 @@ CGFloat const kMaxImageScale = 3.0;
 
 - (void)dismissSelf {
     
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -146,9 +161,9 @@ CGFloat const kMaxImageScale = 3.0;
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
         [UIView animateWithDuration:0.25 animations:^{
             if (horizontalScale < 1.0) {
-                [content setTransform:CGAffineTransformIdentity];
+                [content setTransform:CGAffineTransformRotate(CGAffineTransformIdentity, self.orientationAngle)];
             } else if (horizontalScale > kMaxImageScale) {
-                [content setTransform:CGAffineTransformScale(CGAffineTransformIdentity, kMaxImageScale, kMaxImageScale)];
+                [content setTransform:CGAffineTransformScale(CGAffineTransformRotate(CGAffineTransformIdentity, self.orientationAngle), kMaxImageScale, kMaxImageScale)];
             }
         } completion:nil];
     }
@@ -197,7 +212,7 @@ CGFloat const kMaxImageScale = 3.0;
             
         } else {
             
-            NSLog(@"∆ = %f", destinationDelta);
+//            NSLog(@"∆ = %f", destinationDelta);
             CGFloat const duration = MIN(0.3, 0.001 * destinationDelta + 0.1);
             
             [self resetAnchorPointWithContent:content container:container andDuration:duration];
@@ -326,6 +341,29 @@ CGFloat const kMaxImageScale = 3.0;
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     
     return [[ESModalImageViewAnimationController alloc] initWithThumbnailView:self.tappedThumbnail];
+}
+
+#pragma mark - Rotation
+
+- (void)deviceWillRotateTo:(UIDeviceOrientation)orientationMode {
+    
+    CGFloat newAngle;
+    
+    if (orientationMode == UIDeviceOrientationLandscapeLeft) {
+        newAngle = M_PI_2;
+    } else if (orientationMode == UIDeviceOrientationLandscapeRight) {
+        newAngle = -M_PI_2;
+    } else if (orientationMode == UIDeviceOrientationFaceUp || orientationMode == UIDeviceOrientationFaceDown) {
+        newAngle = self.orientationAngle;
+    } else {
+        newAngle = 0.0;
+    }
+    
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.imageView.transform = CGAffineTransformRotate(self.imageView.transform, newAngle - self.orientationAngle);
+        } completion:^(BOOL finished) {
+            self.orientationAngle = newAngle;
+        }];
 }
 
 @end
