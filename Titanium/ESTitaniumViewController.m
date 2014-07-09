@@ -28,7 +28,7 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
     
     [super awakeFromNib];
     
-    NSArray *imageNames = @[@"frenchman.jpg", @"C4S front.jpg", @"C2S top.jpg"];
+    NSArray *imageNames = @[@"frenchman.jpg", @"quri_card.jpg", @"quri_card.jpg"];
     NSMutableArray *images = [NSMutableArray arrayWithCapacity:[imageNames count]];
     for (NSString *name in imageNames) {
         [images addObject:[UIImage imageNamed:name]];
