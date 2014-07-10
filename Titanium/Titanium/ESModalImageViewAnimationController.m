@@ -112,23 +112,25 @@ static CGFloat const kMaskingDuration = 0.15;
 
 #pragma mark - Internals
 
+- (CGFloat)scaleFactorForImageViewFrame:(CGRect)imageViewFrame andThumbnailFrame:(CGRect)thumbnailFrame {
+    
+    CGFloat factor;
+    
+    CGFloat const imageRatio = imageViewFrame.size.width / imageViewFrame.size.height;
+    CGFloat const thumbnailRatio = thumbnailFrame.size.width / thumbnailFrame.size.height;
+    
+    if (thumbnailRatio > imageRatio) {
+        factor = thumbnailFrame.size.width / imageViewFrame.size.width;
+    } else {
+        factor = thumbnailFrame.size.height / imageViewFrame.size.height;
+    }
+    
+    return factor;
+}
+
 - (CGAffineTransform)affineTransformWithImageViewFrame:(CGRect)imageViewFrame andThumbnailFrame:(CGRect)thumbnailFrame {
     
-    CGFloat scaleFactor = ^CGFloat {
-        CGFloat factor;
-        
-        CGFloat const imageRatio = imageViewFrame.size.width / imageViewFrame.size.height;
-        CGFloat const thumbnailRatio = thumbnailFrame.size.width / thumbnailFrame.size.height;
-        
-        if (thumbnailRatio > imageRatio) {
-            factor = thumbnailFrame.size.width / imageViewFrame.size.width;
-        } else {
-            factor = thumbnailFrame.size.height / imageViewFrame.size.height;
-        }
-        
-        return factor;
-    }();
-    
+    CGFloat scaleFactor = [self scaleFactorForImageViewFrame:imageViewFrame andThumbnailFrame:thumbnailFrame];
     CGAffineTransform scale = CGAffineTransformMakeScale(scaleFactor, scaleFactor);
     
     CGFloat deltaX = CGRectGetMidX(thumbnailFrame) - CGRectGetMidX(imageViewFrame);
@@ -171,34 +173,58 @@ static CGFloat const kMaskingDuration = 0.15;
     mask.backgroundColor = [UIColor blackColor].CGColor;
     
     CGRect maskBounds = [self maskBoundsWithImageViewFrame:imageViewFrame andThumbnailFrame:thumbnailFrame];
+    CGFloat scaledCornerRadius = ^CGFloat {
+        CGFloat scaleFactor = [self scaleFactorForImageViewFrame:imageViewFrame andThumbnailFrame:thumbnailFrame];
+        return self.thumbnailView.layer.cornerRadius / (scaleFactor == 0.0 ? 1.0 : scaleFactor);
+    }();
 
     if (animated) {
         mask.bounds = (direction == ESModalTransitionDirectionPresenting ? maskBounds : imageViewBounds);
-        [self addAnimationToMask:mask withMaskBounds:maskBounds imageViewBounds:imageViewBounds transitionDirection:direction];
+        [self addAnimationToMask:mask withMaskBounds:maskBounds imageViewBounds:imageViewBounds scaledCornerRadius:scaledCornerRadius transitionDirection:direction];
     }
     
     mask.bounds = (direction == ESModalTransitionDirectionPresenting ? imageViewBounds : maskBounds);
+    mask.cornerRadius = (direction == ESModalTransitionDirectionPresenting ? 0.0 : scaledCornerRadius);
     
     return mask;
 }
 
-- (void)addAnimationToMask:(CALayer *)mask withMaskBounds:(CGRect)maskBounds imageViewBounds:(CGRect)imageViewBounds transitionDirection:(ESModalTransitionDirection)direction {
+- (void)addAnimationToMask:(CALayer *)mask withMaskBounds:(CGRect)maskBounds imageViewBounds:(CGRect)imageViewBounds scaledCornerRadius:(CGFloat)scaledCornerRadius transitionDirection:(ESModalTransitionDirection)direction {
     
-    BOOL portrait = frameIsPortrait(imageViewBounds);
-    NSString *keyPath = (portrait ? @"bounds.size.height" : @"bounds.size.width");
+    CABasicAnimation *maskBoundsAnimation = ^CABasicAnimation * {
     
-    CGFloat maskBoundsDimension = (portrait ? maskBounds.size.height : maskBounds.size.width);
-    CGFloat imageBoundsDimension = (portrait ? imageViewBounds.size.height : imageViewBounds.size.width);
+        BOOL portrait = frameIsPortrait(imageViewBounds);
+        NSString *keyPath = (portrait ? @"bounds.size.height" : @"bounds.size.width");
+        
+        CGFloat maskBoundsDimension = (portrait ? maskBounds.size.height : maskBounds.size.width);
+        CGFloat imageBoundsDimension = (portrait ? imageViewBounds.size.height : imageViewBounds.size.width);
+        
+        CGFloat fromValue = (direction == ESModalTransitionDirectionPresenting ? maskBoundsDimension : imageBoundsDimension);
+        CGFloat toValue = (direction == ESModalTransitionDirectionPresenting ? imageBoundsDimension : maskBoundsDimension);
+        
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
+        animation.fromValue = @(fromValue);
+        animation.toValue = @(toValue);
+        animation.duration = kMaskingDuration;
+        
+        return animation;
+    }();
     
-    CGFloat fromValue = (direction == ESModalTransitionDirectionPresenting ? maskBoundsDimension : imageBoundsDimension);
-    CGFloat toValue = (direction == ESModalTransitionDirectionPresenting ? imageBoundsDimension : maskBoundsDimension);
-    
-    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:keyPath];
-    anim.fromValue = @(fromValue);
-    anim.toValue = @(toValue);
-    anim.duration = kMaskingDuration;
-    
-    [mask addAnimation:anim forKey:@"bounds"];
+    CABasicAnimation *cornerRadiusAnimation = ^CABasicAnimation * {
+        
+        CGFloat const radiusForThumbnail = scaledCornerRadius;
+        CGFloat const radiusForFullScreenView = 0.0;
+        
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
+        animation.fromValue = @((direction == ESModalTransitionDirectionPresenting ? radiusForThumbnail : radiusForFullScreenView));
+        animation.toValue = @((direction == ESModalTransitionDirectionPresenting ? radiusForFullScreenView : radiusForThumbnail));
+        animation.duration = kMaskingDuration;
+        
+        return animation;
+    }();
+
+    [mask addAnimation:maskBoundsAnimation forKey:@"bounds"];
+    [mask addAnimation:cornerRadiusAnimation forKey:@"cornerRadius"];
 }
 
 @end

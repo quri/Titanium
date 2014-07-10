@@ -51,11 +51,12 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
     
     [self.thumbnailViews enumerateObjectsUsingBlock:^(UIImageView *view, NSUInteger idx, BOOL *stop) {
         [view setImage:self.images[idx]];
-        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showImageView:)];
-        [view addGestureRecognizer:recognizer];
+        [view.layer setCornerRadius:25.0];
+        [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showImageView:)]];
     }];
     
     [self.extraThumbnail setImage:self.images[0]];
+    [self.extraThumbnail.layer setCornerRadius:25.0];
     [self.extraThumbnail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFrenchman)]];
 }
 
