@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		88D4AE49196DFAC8002E671A /* quri_card.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88D4AE48196DFAC8002E671A /* quri_card.jpg */; };
+		88D4AE4B196EFDDD002E671A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 88D4AE4A196EFDDD002E671A /* LICENSE */; };
 		88F00B951937F9C000DCA103 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B941937F9C000DCA103 /* Foundation.framework */; };
 		88F00B971937F9C000DCA103 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B961937F9C000DCA103 /* CoreGraphics.framework */; };
 		88F00B991937F9C000DCA103 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F00B981937F9C000DCA103 /* UIKit.framework */; };
@@ -42,6 +43,7 @@
 		881023551959E096007F0CC2 /* ESImageViewController-Internals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ESImageViewController-Internals.h"; path = "Titanium/ESImageViewController-Internals.h"; sourceTree = "<group>"; };
 		88C0558A1953A4470009A643 /* Titanium.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Titanium.podspec; sourceTree = SOURCE_ROOT; };
 		88D4AE48196DFAC8002E671A /* quri_card.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = quri_card.jpg; sourceTree = "<group>"; };
+		88D4AE4A196EFDDD002E671A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		88F00B911937F9C000DCA103 /* Titanium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Titanium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F00B941937F9C000DCA103 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		88F00B961937F9C000DCA103 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -159,6 +161,7 @@
 				88F00BA01937F9C000DCA103 /* main.m */,
 				88F00BA21937F9C000DCA103 /* Titanium-Prefix.pch */,
 				88C0558A1953A4470009A643 /* Titanium.podspec */,
+				88D4AE4A196EFDDD002E671A /* LICENSE */,
 				881023541959D14E007F0CC2 /* README.md */,
 			);
 			name = "Supporting Files";
@@ -262,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88D4AE4B196EFDDD002E671A /* LICENSE in Resources */,
 				88D4AE49196DFAC8002E671A /* quri_card.jpg in Resources */,
 				88F00BB01937F9C000DCA103 /* Images.xcassets in Resources */,
 				88F00BA81937F9C000DCA103 /* Main_iPhone.storyboard in Resources */,

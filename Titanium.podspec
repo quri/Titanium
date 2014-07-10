@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
   s.version      = "0.7"
   
-  s.license      = { :type => "MIT" }
+  s.license      = { :type => "MIT", :file => "LICENSE" }
 
   s.summary      = "Image viewer library"
 
@@ -13,8 +13,6 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/Quri/Titanium"
-
-  s.license      = 'None'
 
   s.authors      = { "Camille Kander" => "camille@quri.com" }
 
