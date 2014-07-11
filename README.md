@@ -8,6 +8,8 @@ Titanium
 
 Titanium is a library that provides a way to view full screen images from thumbnail previews.
 
+![Titanium examples](http://cl.ly/image/2j3Q2P1W350T/bloggif_53becd2620d05.gif)
+
 Usage
 -----
 
