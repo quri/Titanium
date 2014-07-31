@@ -56,14 +56,19 @@ static CGFloat const kMaskingDuration = 0.15;
     
     ESImageViewController *presentedViewController = (ESImageViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
+    UIImage *image = presentedViewController.image;
+    if (!image) {
+        NSException *e = [NSException exceptionWithName:@"Nil image exception." reason:@"The presentedViewController's image property is nil. ESImageViewController cannot be presented with a nil image. Maybe you're using an asynchronous image view." userInfo:nil];
+        @throw e;
+    }
+    
     UIView *presentedView = presentedViewController.view;
     UIView *containerView = [transitionContext containerView];
     
     [presentedView setAlpha:0.0];
     [containerView insertSubview:presentedView aboveSubview:containerView];
     
-    UIImage *image = presentedViewController.image;
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:[presentedViewController imageViewFrameForImage:presentedViewController.image]];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:[presentedViewController imageViewFrameForImage:image]];
     [imageView setImage:image];
     
     CALayer *mask = [self maskWithImageViewFrame:imageView.frame thumbnailFrame:self.thumbnailView.frame direction:ESModalTransitionDirectionPresenting animated:YES];
