@@ -11,7 +11,7 @@
 @interface ESImageViewController : UIViewController
 
 /**
- *  The image that will be displayed. Make sure to set this property before presenting the controller.
+ *  The image that will be displayed. Make sure to set this property before presenting the controller. Attempting to display the controller without setting this property will throw an exception ("Nil image exception").
  */
 @property (nonatomic, strong) UIImage *image;
 

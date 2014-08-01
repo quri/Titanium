@@ -58,7 +58,7 @@ static CGFloat const kMaskingDuration = 0.15;
     
     UIImage *image = presentedViewController.image;
     if (!image) {
-        NSException *e = [NSException exceptionWithName:@"Nil image exception." reason:@"The presentedViewController's image property is nil. ESImageViewController cannot be presented with a nil image. Maybe you're using an asynchronous image view." userInfo:nil];
+        NSException *e = [NSException exceptionWithName:@"Nil image exception" reason:@"The presentedViewController's image property is nil. ESImageViewController cannot be presented with a nil image. Maybe you're using an asynchronous image view." userInfo:nil];
         @throw e;
     }
     
