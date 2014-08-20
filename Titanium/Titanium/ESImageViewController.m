@@ -33,6 +33,16 @@ CGFloat const kMaxImageScale = 3.0;
         // Custom initialization
         [self setModalPresentationStyle:UIModalPresentationCustom];
         [self setTransitioningDelegate:self];
+        
+        self.closeButton = [[UIButton alloc] init];
+        self.closeButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.closeButton.layer.borderWidth = 1;
+        self.closeButton.layer.cornerRadius = 3;
+        self.closeButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [self.closeButton setTitle:@"Close" forState:UIControlStateNormal];
+        [self.closeButton addTarget:self action:@selector(dismissSelf) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.closeButton];
+        self.closeButton.hidden = YES;
     }
     return self;
 }
@@ -65,6 +75,12 @@ CGFloat const kMaxImageScale = 3.0;
         [self deviceWillRotateTo:orientation];
     }];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
+
+    CGRect frame;
+    frame.size = CGSizeMake(70, 44);
+    frame.origin = CGPointMake(10, 10);
+    self.closeButton.frame = frame;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

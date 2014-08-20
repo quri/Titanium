@@ -85,6 +85,7 @@ static NSString * const kShowImageSegueIdentifier = @"ShowImage";
 
 - (void)showFrenchman {
     ESImageViewController *ivc = [[ESImageViewController alloc] init];
+    ivc.closeButton.hidden = NO;
     [ivc setTappedThumbnail:self.extraThumbnail];
     [ivc setImage:self.extraThumbnail.image];
     [self presentViewController:ivc animated:YES completion:nil];

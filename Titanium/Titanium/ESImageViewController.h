@@ -21,5 +21,9 @@
  */
 @property (strong, nonatomic) UIView *tappedThumbnail;
 
+/**
+ * Close button (hidden by default).
+ */
+@property (nonatomic, strong) UIButton *closeButton;
 
 @end
