@@ -1,7 +1,6 @@
 language: objective-c
 before_install:
 - brew update
-- brew upgrade xctool
 - brew install s3cmd
 - gem install cocoapods --no-ri --no-rdoc
 script:
