@@ -51,7 +51,6 @@
 		88F00B9C1937F9C000DCA103 /* Titanium-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Titanium-Info.plist"; sourceTree = "<group>"; };
 		88F00B9E1937F9C000DCA103 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		88F00BA01937F9C000DCA103 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		88F00BA21937F9C000DCA103 /* Titanium-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Titanium-Prefix.pch"; sourceTree = "<group>"; };
 		88F00BA31937F9C000DCA103 /* ESAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESAppDelegate.h; sourceTree = "<group>"; };
 		88F00BA41937F9C000DCA103 /* ESAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESAppDelegate.m; sourceTree = "<group>"; };
 		88F00BA71937F9C000DCA103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -159,7 +158,6 @@
 				88F00B9C1937F9C000DCA103 /* Titanium-Info.plist */,
 				88F00B9D1937F9C000DCA103 /* InfoPlist.strings */,
 				88F00BA01937F9C000DCA103 /* main.m */,
-				88F00BA21937F9C000DCA103 /* Titanium-Prefix.pch */,
 				88C0558A1953A4470009A643 /* Titanium.podspec */,
 				88D4AE4A196EFDDD002E671A /* LICENSE */,
 				881023541959D14E007F0CC2 /* README.md */,
@@ -422,8 +420,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
 				INFOPLIST_FILE = "Titanium/Titanium-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -439,8 +435,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
 				INFOPLIST_FILE = "Titanium/Titanium-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -458,8 +452,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -480,8 +472,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Titanium/Titanium-Prefix.pch";
 				INFOPLIST_FILE = "TitaniumTests/TitaniumTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
