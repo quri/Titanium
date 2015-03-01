@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Quri. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface ESModalImageViewAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Quri. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface ESImageViewController : UIViewController
 
