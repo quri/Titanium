@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '7.0'
 
-  s.source       = { :git => "git@github.com:quri/Titanium.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/quri/Titanium.git", :tag => "#{s.version}" }
 
   s.source_files = 'Titanium/Titanium/*.{h,m}'
 
